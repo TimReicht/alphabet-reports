@@ -1,0 +1,3025 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Daily Portfolio Intelligence — Thursday, 23. April 2026</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding: 24px 16px 40px;
+    font-size: 17px;
+}
+.container { max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+
+/* ═══ TABS ═══ */
+.tabs {
+    display: flex;
+    gap: 4px;
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    position: sticky;
+    top: 16px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+.tab-btn {
+    flex: 1;
+    padding: 14px 24px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: #475569;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+.tab-btn:hover { background: #f1f5f9; color: #0f172a; }
+.tab-btn.active {
+    background: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+}
+.tab-content { display: none; flex-direction: column; gap: 18px; }
+.tab-content.active { display: flex; }
+
+/* ═══ PORTFOLIO TAB ═══ */
+.pf-hero {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px 36px;
+    border-left: 6px solid #2563eb;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+.pf-hero h1 {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    color: #0f172a;
+}
+.pf-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+}
+.pf-stat {
+    background: #f8fafc;
+    padding: 18px 22px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+.pf-stat-label {
+    font-size: 12px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.pf-stat-value {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+    font-variant-numeric: tabular-nums;
+}
+.pf-stat-sub {
+    font-size: 14px;
+    color: #64748b;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+/* Theme section in portfolio */
+.theme-section {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 22px 26px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+.theme-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f1f5f9;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.theme-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+}
+.theme-stats {
+    display: flex;
+    gap: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    align-items: center;
+}
+.theme-count { color: #64748b; }
+.theme-value { color: #0f172a; font-variant-numeric: tabular-nums; }
+
+/* Portfolio position cards */
+.pf-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.pf-card {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 22px 26px;
+    border-left: 4px solid #2563eb;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #2563eb;
+}
+.pf-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.pf-card-title {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.pf-ticker {
+    font-family: 'SF Mono', ui-monospace, monospace;
+    color: #1d4ed8;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+}
+.pf-name {
+    font-size: 16px;
+    color: #334155;
+    font-weight: 600;
+}
+.pf-card-meta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.conv-badge {
+    color: white;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+.pf-portpct {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'SF Mono', ui-monospace, monospace;
+}
+.pf-values {
+    display: flex;
+    gap: 24px;
+    padding: 12px 16px;
+    background: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    font-size: 15px;
+    align-items: center;
+}
+.pf-values strong {
+    font-weight: 800;
+    font-size: 17px;
+    font-variant-numeric: tabular-nums;
+}
+.pf-val-label {
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 500;
+    margin-right: 6px;
+}
+/* Live-Preis Row in Portfolio-Karte */
+.pf-live-row {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 16px;
+    background: #f0f9ff;
+    border-radius: 8px;
+    border-left: 3px solid #0ea5e9;
+    margin-bottom: 14px;
+    font-size: 15px;
+}
+.pf-live-price { display: flex; gap: 8px; align-items: center; }
+.pf-live-change { font-weight: 800; font-size: 16px; }
+.pf-live-value { display: flex; gap: 8px; align-items: center; margin-left: auto; }
+.kpi-live { border-left: 3px solid #0ea5e9; }
+.pf-these {
+    background: #ffffff;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border-left: 3px solid #2563eb;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #1e293b;
+    margin-bottom: 14px;
+}
+.pf-these-empty {
+    color: #94a3b8;
+    font-style: italic;
+    border-left-color: #cbd5e1;
+}
+.pf-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+}
+.pf-section {
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+.pf-bull { background: #f0fdf4; border-left: 3px solid #16a34a; }
+.pf-bear { background: #fef2f2; border-left: 3px solid #dc2626; }
+.pf-cat { background: #fffbeb; border-left: 3px solid #d97706; }
+.pf-section-title {
+    font-weight: 800;
+    margin-bottom: 8px;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+}
+.pf-bull .pf-section-title { color: #15803d; }
+.pf-bear .pf-section-title { color: #b91c1c; }
+.pf-cat .pf-section-title { color: #b45309; }
+.pf-section ul {
+    margin: 0;
+    padding-left: 18px;
+}
+.pf-section li {
+    margin: 4px 0;
+    color: #334155;
+    line-height: 1.5;
+}
+
+/* ═══ HERO ═══ */
+.hero {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px 36px;
+    border-left: 6px solid var(--accent);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 4px 12px rgba(15, 23, 42, 0.04);
+    position: relative;
+    overflow: hidden;
+}
+.hero::before {
+    content: ""; position: absolute; top: -80px; right: -80px;
+    width: 280px; height: 280px; background: var(--accent);
+    opacity: 0.06; border-radius: 50%; filter: blur(60px);
+}
+.hero-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 24px; position: relative; gap: 24px;
+}
+.hero h1 { font-size: 30px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.02em; color: #0f172a; }
+.hero-date { color: #64748b; font-size: 16px; font-weight: 500; }
+.hero-bear-counter {
+    display: flex; flex-direction: column; align-items: center;
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 16px 32px;
+    border: 2px solid var(--accent);
+    min-width: 130px;
+}
+.bear-num {
+    font-size: 56px; font-weight: 800;
+    color: var(--accent); font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+.bear-label {
+    font-size: 12px; color: #64748b;
+    text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700;
+    margin-top: 6px; text-align: center;
+}
+.hero-section-label {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 1.4px;
+    font-weight: 700; color: #64748b; margin-bottom: 12px;
+}
+.hero-take {
+    background: #eff6ff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 18px;
+    border-left: 4px solid #2563eb;
+}
+.hero-take-text {
+    font-size: 18px;
+    color: #1e293b;
+    line-height: 1.6;
+    font-weight: 500;
+}
+.take-bullets {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.take-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border-left: 4px solid transparent;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+.take-bullet-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    line-height: 1.5;
+}
+.take-bullet-text { color: #1e293b; }
+.take-bullet-red {
+    background: #fef2f2;
+    border-left-color: #dc2626;
+}
+.take-bullet-red .take-bullet-text { color: #7f1d1d; }
+.take-bullet-green {
+    background: #f0fdf4;
+    border-left-color: #16a34a;
+}
+.take-bullet-green .take-bullet-text { color: #14532d; }
+.take-bullet-yellow {
+    background: #fffbeb;
+    border-left-color: #d97706;
+}
+.take-bullet-yellow .take-bullet-text { color: #78350f; }
+.hero-actions { margin-bottom: 22px; }
+.action-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 12px;
+}
+.action-card {
+    background: #fffbeb;
+    border-left: 4px solid #d97706;
+    border-radius: 10px;
+    padding: 14px 18px;
+}
+.action-ticker {
+    font-family: 'SF Mono', ui-monospace, monospace;
+    color: #b45309; font-weight: 800; font-size: 15px;
+    margin-bottom: 6px;
+}
+.action-text { font-size: 16px; color: #1e293b; line-height: 1.5; font-weight: 500; }
+.hero-empty {
+    background: #f8fafc;
+    border-radius: 10px; padding: 20px;
+    color: #64748b; font-size: 16px; text-align: center;
+}
+.hero-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+.kpi {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 16px 20px;
+    border: 1px solid #e2e8f0;
+}
+.kpi-label {
+    font-size: 12px; color: #64748b; text-transform: uppercase;
+    letter-spacing: 1.2px; font-weight: 700; margin-bottom: 8px;
+}
+.kpi-value {
+    font-size: 28px; font-weight: 800; letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums; line-height: 1.1;
+    color: #0f172a;
+}
+.kpi-value.status-mix { font-size: 18px; display: flex; gap: 14px; font-weight: 700; }
+.kpi-sub { color: #64748b; font-size: 14px; margin-top: 6px; font-weight: 500; }
+.pnl-positive { color: #16a34a; }
+.pnl-negative { color: #dc2626; }
+
+/* ═══ SECTIONS ═══ */
+.section {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 24px 26px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+.section-title {
+    font-size: 19px; font-weight: 800;
+    letter-spacing: -0.01em; margin-bottom: 18px;
+    display: inline-block; color: #0f172a;
+}
+.section-sub { color: #64748b; font-weight: 500; font-size: 14px; margin-left: 8px; }
+
+/* ═══ BINARY EVENTS ═══ */
+.binary-section {
+    background: #fff7ed;
+    border-left: 5px solid #d97706;
+}
+.binary-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+}
+.binary-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex; gap: 16px; align-items: center;
+    border-left: 4px solid #94a3b8;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+.binary-soon { border-left-color: #d97706; background: #fffbeb; }
+.binary-urgent { border-left-color: #dc2626; background: #fef2f2; }
+.binary-countdown { text-align: center; min-width: 56px; }
+.binary-days {
+    font-size: 36px; font-weight: 800; line-height: 1;
+    color: #0f172a; font-variant-numeric: tabular-nums;
+}
+.binary-urgent .binary-days { color: #dc2626; }
+.binary-soon .binary-days { color: #d97706; }
+.binary-days-label { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700; margin-top: 2px; }
+.binary-info { flex: 1; }
+.binary-ticker {
+    font-family: 'SF Mono', ui-monospace, monospace;
+    color: #1d4ed8; font-weight: 800; font-size: 17px; margin-bottom: 4px;
+}
+.binary-date { font-size: 13px; color: #64748b; margin-bottom: 6px; font-weight: 500; }
+.binary-desc { font-size: 14px; color: #334155; line-height: 1.5; }
+
+/* ═══ 3-COLUMN MAIN ═══ */
+.three-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+}
+.col {
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    display: flex; flex-direction: column;
+}
+.col-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px;
+    font-weight: 800;
+    border-bottom: 1px solid #e2e8f0;
+}
+.col-confirm .col-header { background: #f0fdf4; color: #15803d; }
+.col-wackelt .col-header { background: #fffbeb; color: #b45309; }
+.col-bear .col-header { background: #fef2f2; color: #b91c1c; }
+.col-title { font-size: 14px; letter-spacing: 1.2px; }
+.col-count { font-size: 24px; font-weight: 800; }
+.col-body {
+    padding: 14px;
+    display: flex; flex-direction: column; gap: 12px;
+    max-height: 1400px;
+    overflow-y: auto;
+}
+.col-empty {
+    text-align: center; color: #94a3b8;
+    padding: 40px 16px; font-size: 15px;
+}
+
+/* Tweet Cards Compact */
+.tcard {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1px solid #e2e8f0;
+}
+.tcard-head {
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    margin-bottom: 10px;
+}
+.tcard-author {
+    color: #475569; font-size: 14px; font-weight: 700;
+}
+.ticker {
+    background: #dbeafe; color: #1e40af;
+    padding: 2px 8px; border-radius: 4px;
+    font-size: 12px; font-weight: 700;
+    font-family: 'SF Mono', ui-monospace, monospace;
+}
+.tweet-link {
+    margin-left: auto; color: #2563eb;
+    text-decoration: none; font-size: 18px; font-weight: 700;
+}
+.tweet-link:hover { color: #1d4ed8; }
+.tcard-summary {
+    font-size: 16px; font-weight: 600;
+    color: #0f172a; margin-bottom: 10px; line-height: 1.5;
+}
+blockquote {
+    border-left: 3px solid #cbd5e1;
+    padding: 6px 12px;
+    color: #475569; font-style: italic; font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    background: #ffffff;
+    border-radius: 0 6px 6px 0;
+}
+.impact-tag {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
+    font-size: 13px; font-weight: 700;
+    padding: 3px 10px; border-radius: 4px;
+    margin-bottom: 8px;
+    font-family: 'SF Mono', ui-monospace, monospace;
+}
+.trigger-box {
+    background: #fef2f2;
+    border-left: 3px solid #dc2626;
+    padding: 10px 12px;
+    border-radius: 0 6px 6px 0;
+    margin: 8px 0;
+    font-size: 13px;
+}
+.trigger-title { color: #b91c1c; font-weight: 800; margin-bottom: 6px; font-size: 13px; }
+.trigger-box ul { margin: 0; padding-left: 18px; }
+.trigger-box li { margin: 4px 0; color: #334155; line-height: 1.5; }
+.card-action {
+    margin-top: 10px;
+    color: #b45309; font-size: 14px; font-weight: 600;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 10px;
+    line-height: 1.5;
+}
+.theme-tag {
+    display: inline-block;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 12px; padding: 2px 8px; border-radius: 4px;
+    margin-right: 5px; margin-top: 8px;
+    font-family: 'SF Mono', ui-monospace, monospace;
+    font-weight: 600;
+}
+
+/* ═══ CONVICTION TRACKER ═══ */
+.conv-list { display: flex; flex-direction: column; gap: 10px; }
+.conv-row {
+    display: grid; grid-template-columns: 160px 220px 1fr;
+    gap: 16px; align-items: center;
+    padding: 14px 16px;
+    background: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+.conv-author {
+    font-weight: 800; color: #0f172a; font-size: 16px;
+}
+.conv-stats { font-size: 14px; color: #475569; font-weight: 500; }
+.conv-tickers { font-size: 13px; }
+.conv-ticker {
+    background: #dbeafe; color: #1e40af;
+    padding: 2px 8px; border-radius: 4px;
+    margin-right: 5px;
+    font-family: 'SF Mono', ui-monospace, monospace;
+    font-weight: 700;
+    display: inline-block; margin-bottom: 4px;
+}
+
+/* ═══ WATCHLIST ═══ */
+.watch-list { display: flex; flex-direction: column; gap: 12px; }
+.watch-row {
+    display: grid; grid-template-columns: 100px 1fr;
+    gap: 16px;
+    padding: 16px 18px;
+    background: #f8fafc;
+    border-radius: 10px;
+    border-left: 4px solid #2563eb;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #2563eb;
+}
+.watch-ticker {
+    font-family: 'SF Mono', ui-monospace, monospace;
+    color: #1d4ed8; font-weight: 800; font-size: 20px;
+    align-self: center;
+}
+.watch-summary { font-size: 15px; color: #0f172a; margin-bottom: 8px; font-weight: 600; line-height: 1.5; }
+.watch-trigger { font-size: 14px; color: #334155; margin-bottom: 6px; line-height: 1.5; }
+.watch-trigger strong { color: #0f172a; }
+.watch-meta { font-size: 13px; color: #64748b; font-weight: 500; }
+
+/* ═══ WEB RESEARCH ═══ */
+.web-grid { display: flex; flex-direction: column; gap: 14px; }
+.web-card {
+    background: #f8fafc;
+    border-radius: 10px; padding: 16px 20px;
+    border-left: 4px solid #2563eb;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #2563eb;
+}
+.web-ticker {
+    font-family: 'SF Mono', ui-monospace, monospace;
+    color: #1d4ed8; font-weight: 800; font-size: 17px;
+    margin-bottom: 10px;
+}
+.web-text { font-size: 15px; color: #334155; line-height: 1.6; }
+.web-text strong { color: #0f172a; font-weight: 700; }
+
+/* ═══ OTHER EVENTS ═══ */
+.evt-list { display: flex; flex-direction: column; gap: 8px; }
+.evt-row {
+    display: grid; grid-template-columns: 110px 100px 1fr;
+    gap: 14px; align-items: center;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border-radius: 8px;
+    font-size: 15px;
+    border-left: 3px solid #cbd5e1;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #cbd5e1;
+}
+.evt-row.evt-urgent { border-left-color: #d97706; background: #fffbeb; }
+.evt-date { color: #64748b; font-variant-numeric: tabular-nums; font-size: 14px; font-weight: 600; }
+.evt-ticker {
+    font-family: 'SF Mono', ui-monospace, monospace;
+    color: #1d4ed8; font-weight: 800; font-size: 15px;
+}
+.evt-desc { color: #334155; }
+
+/* ═══ THEME HEATMAP ═══ */
+.heatmap { display: flex; flex-direction: column; gap: 10px; }
+.heat-row {
+    display: grid; grid-template-columns: 260px 1fr 60px;
+    gap: 14px; align-items: center;
+    padding: 6px 0;
+}
+.heat-label { font-size: 15px; color: #334155; font-weight: 600; }
+.heat-bar-container {
+    background: #f1f5f9;
+    border-radius: 6px; height: 28px; overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+.heat-bar {
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    height: 100%; border-radius: 5px;
+}
+.heat-count {
+    font-size: 16px; font-weight: 800;
+    color: #0f172a; text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ═══ NOISE/LOW SECTION ═══ */
+details summary { cursor: pointer; list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+.section-toggle::before { content: "▶ "; color: #64748b; margin-right: 6px; font-size: 13px; }
+details[open] .section-toggle::before { content: "▼ "; }
+.low-content { margin-top: 16px; }
+.low-content h3 {
+    font-size: 13px; text-transform: uppercase;
+    color: #64748b; letter-spacing: 1.2px;
+    margin: 16px 0 8px 0; font-weight: 700;
+}
+.count { color: #64748b; font-weight: 500; }
+.low-list { list-style: none; }
+.low-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 14px; color: #334155;
+    line-height: 1.6;
+}
+.low-list li:last-child { border-bottom: none; }
+.low-list li strong { color: #0f172a; }
+.low-list code {
+    background: #dbeafe; color: #1e40af;
+    padding: 1px 6px; border-radius: 4px;
+    font-size: 13px;
+    font-family: 'SF Mono', ui-monospace, monospace;
+    font-weight: 700;
+}
+.low-list a { color: #2563eb; text-decoration: none; font-weight: 600; }
+
+/* ═══ TEAM INTELLIGENCE ═══ */
+.ti-section { border-left: 4px solid #6366f1; }
+.ti-grid { display: flex; flex-direction: column; gap: 12px; }
+.ti-card {
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1px solid #e2e8f0;
+}
+.ti-head {
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    margin-bottom: 10px;
+}
+.ti-badge {
+    font-size: 11px; font-weight: 800; letter-spacing: 1px;
+    padding: 3px 10px; border-radius: 5px;
+    text-transform: uppercase;
+}
+.ti-author { font-weight: 700; color: #475569; font-size: 14px; }
+.ti-summary {
+    font-size: 16px; font-weight: 600; color: #0f172a;
+    margin-bottom: 10px; line-height: 1.5;
+}
+.ti-link {
+    margin-left: auto; color: #2563eb; text-decoration: none;
+    font-size: 14px; font-weight: 700;
+}
+.ti-link:hover { color: #1d4ed8; text-decoration: underline; }
+.ti-time { font-size: 12px; color: #94a3b8; font-weight: 500; }
+.ti-claude-response {
+    font-size: 15px; color: #1e293b; line-height: 1.6;
+    margin-bottom: 10px; white-space: pre-wrap;
+    background: rgba(255,255,255,0.6);
+    padding: 10px 12px; border-radius: 8px;
+}
+
+/* ═══ FOOTER ═══ */
+footer {
+    text-align: center; color: #94a3b8;
+    font-size: 13px;
+    padding: 20px 0 0;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 18px;
+    font-weight: 500;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1100px) {
+    .three-cols { grid-template-columns: 1fr; }
+    .col-body { max-height: none; }
+}
+@media (max-width: 720px) {
+    body { padding: 14px 10px 32px; font-size: 16px; }
+    .hero h1 { font-size: 24px; }
+    .heat-row { grid-template-columns: 160px 1fr 50px; gap: 10px; }
+    .conv-row { grid-template-columns: 1fr; gap: 8px; }
+    .hero-take-text { font-size: 16px; }
+    .tcard-summary { font-size: 15px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <nav class="tabs">
+        <button class="tab-btn active" data-tab="daily">📡 Daily Report</button>
+        <button class="tab-btn" data-tab="portfolio">💼 Portfolio Übersicht</button>
+    </nav>
+    <div id="daily-tab" class="tab-content active">
+        <section class="hero" style="--accent: #3498DB;">
+    <div class="hero-header">
+        <div>
+            <h1>📡 Daily Portfolio Intelligence</h1>
+            <div class="hero-date">Thursday, 23. April 2026 · 07:38</div>
+        </div>
+        <div class="hero-bear-counter">
+            <div class="bear-num">0</div>
+            <div class="bear-label">Bear-Trigger</div>
+        </div>
+    </div>
+    <div class="hero-take">
+    <div class="hero-section-label">📝 MORNING TAKE</div>
+    <div class="take-bullets"><div class="take-bullet take-bullet-red"><span class="take-bullet-icon">🔴</span><span class="take-bullet-text">SIVE -5% nach schwedischem Negativartikel – Watch trotz starker These, 27.04. Jabil-Announcement binär.</span></div><div class="take-bullet take-bullet-green"><span class="take-bullet-icon">🟢</span><span class="take-bullet-text">SOI +11%, IQE +12%: EU-Photonik-Rally bestätigt strategische Thesen – AIXA-Blockade zeigt kritische Infrastruktur-Rolle.</span></div><div class="take-bullet take-bullet-green"><span class="take-bullet-icon">🟢</span><span class="take-bullet-text">CPU-Knappheit verschärft sich: Intel/AMD Preise +10-20% seit März, weitere Erhöhungen Q3 geplant – Engpass-Thesis intakt.</span></div><div class="take-bullet take-bullet-green"><span class="take-bullet-icon">🟢</span><span class="take-bullet-text">SIVE als CPO/1.6T-Leader für 2027 bekräftigt (Aleabitor) – Market mispriced trotz AMD/MRVL-Mapping.</span></div><div class="take-bullet take-bullet-yellow"><span class="take-bullet-icon">🟡</span><span class="take-bullet-text">MTSI: Yiannis sieht Upside, aber Stock hinkt hinterher – Performance-Watch ohne konkreten Katalysator.</span></div><div class="take-bullet take-bullet-yellow"><span class="take-bullet-icon">🟡</span><span class="take-bullet-text">14.05. AXTI Shareholder Vote (korrigiert) – binäres Event für Position.</span></div></div>
+</div>
+    <div class="hero-actions">
+    <div class="hero-section-label">🎯 TOP ACTIONS HEUTE</div>
+    <div class="action-grid"><div class="action-card">
+    <div class="action-ticker">IQE, SOI, SIVE, POET</div>
+    <div class="action-text">Schwedischen SIVE-Artikel sofort beschaffen und auf Bear-Trigger prüfen (O-Net/Jabil-Zweifel, Capital-Raise-Gerüchte); ggf. Hedging erwägen.</div>
+</div><div class="action-card">
+    <div class="action-ticker">MTSI</div>
+    <div class="action-text">Monitoring fortsetzen: Prüfen ob Q1-Earnings (Ende April) CW-Laser-Fortschritt und DC-Guidance bestätigen, sonst Rotation erwägen.</div>
+</div><div class="action-card">
+    <div class="action-ticker">SIVE, MRVL</div>
+    <div class="action-text">Aleabitor-Research zu AMD/MRVL CPO-Programmen tracken für SIVE-Jabil/O-Net-Revenue-Materialisierungs-Timing (Q3/Q4 2026).</div>
+</div></div>
+</div>
+    <div class="hero-kpis">
+        <div class="kpi"><div class="kpi-label">Portfolio (YAML)</div><div class="kpi-value">€1,075,791</div><div class="kpi-sub pnl-positive">+46.1% vs. Einstand</div></div>
+        <div class="kpi kpi-live">
+    <div class="kpi-label">Tageswert (live)</div>
+    <div class="kpi-value">€1,072,555</div>
+    <div class="kpi-sub">32 Kurse geladen</div>
+</div>
+        <div class="kpi kpi-live">
+    <div class="kpi-label">vs. Gestern (2026-04-22)</div>
+    <div class="kpi-value pnl-positive">+€129</div>
+    <div class="kpi-sub pnl-positive">+0.01%</div>
+</div>
+        <div class="kpi"><div class="kpi-label">€ Impact heute</div><div class="kpi-value">€0</div><div class="kpi-sub">0 Bear-Triggers</div></div>
+        <div class="kpi"><div class="kpi-label">Tweets analysiert</div><div class="kpi-value">48</div><div class="kpi-sub">29 relevant</div></div>
+        <div class="kpi"><div class="kpi-label">Status-Mix</div><div class="kpi-value status-mix"><span style="color:#E74C3C;">🔴 0</span> <span style="color:#F39C12;">🟡 2</span> <span style="color:#2ECC71;">🟢 28</span></div></div>
+    </div>
+</section><section class="section binary-section">
+    <h2 class="section-title">⚡ Binary Events <span class="section-sub">(nächste 30 Tage — kritische Catalysts)</span></h2>
+    <div class="binary-grid"><div class="binary-card binary-urgent">
+    <div class="binary-countdown">
+        <div class="binary-days">4</div>
+        <div class="binary-days-label">Tage</div>
+    </div>
+    <div class="binary-info">
+        <div class="binary-ticker">SIVE</div>
+        <div class="binary-date">27.04.2026</div>
+        <div class="binary-desc">Jabil-Announcement / Annual Report (BINÄR)</div>
+    </div>
+</div><div class="binary-card binary-">
+    <div class="binary-countdown">
+        <div class="binary-days">21</div>
+        <div class="binary-days-label">Tage</div>
+    </div>
+    <div class="binary-info">
+        <div class="binary-ticker">AXTI</div>
+        <div class="binary-date">14.05.2026</div>
+        <div class="binary-desc">Shareholder Vote (KORRIGIERT von 14.04. — Quelle: DEF 14A)</div>
+    </div>
+</div></div>
+</section><section class="three-cols">
+    <div class="col col-confirm">
+        <div class="col-header" style="background: rgba(46, 204, 113, 0.15); color: #2ECC71;">
+            <div class="col-title">🟢 CONFIRMS</div>
+            <div class="col-count">28</div>
+        </div>
+        <div class="col-body"><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">SIVE</span> <span class="ticker">MRVL</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047172919495983573" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Aleabitor bekräftigt SIVE als Top-Pick für CPO/1.6T-Transceiver 2027, sieht Market-Mispricing trotz AMD/MRVL-Mapping.</div>
+    <blockquote>@Winterrose Hmmm. Probably $SIVE or $LPK for CPO/Glass Substrates since those are emerging technological shifts in 2027. 
+
+I really don&#x27;t think markets understand yet what&#x27;s up and coming with Sivers for CPO/1.6T optical transceivers... even if I show mapping to $AMD or…</blockquote>
+    <div class="impact-tag">€166,088 Exposure</div>
+    
+    <div class="card-action">🎯 Aleabitor-Research zu AMD/MRVL CPO-Programmen tracken für SIVE-Jabil/O-Net-Revenue-Materialisierungs-Timing (Q3/Q4 2026).</div>
+    <span class="theme-tag">ai photonics optical supercycle</span><span class="theme-tag">ai semiconductors upstream</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">SIVE</span> <span class="ticker">MRVL</span> <span class="ticker">POET</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2046879187076817237" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">POET bestätigt Marvell-Lieferbeziehung, Tweet impliziert SIVE als upstream Laser-Supplier in dieser Supply-Chain – validiert Tims SIVE-Thesis-Kette.</div>
+    <blockquote>Woah... $POET is up 20.5% premarket today after a 19.32% gain.
+
+Mainly after the CFO&#x27;s interview confirming they&#x27;re the direct supplier to $MRVL.
+
+I wonder if markets know who the upstream laser supplier is yet? (hint: $SIVE). https://t.co/flfx9NVkxk</blockquote>
+    <div class="impact-tag">€166,088 Exposure</div>
+    
+    <div class="card-action">🎯 Monitoring: Falls SIVE-Kurs nicht sympathisch reagiert trotz POET-Rally, Markteffizienz-Gap als taktische Akkumulations-Chance prüfen.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Yiannis</span>
+        
+        <a class="tweet-link" href="https://twitter.com/yianisz/status/2046984624979488932" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Transceiver-Trade überfüllt; nächste Welle ist Optical Circuit Switching und volloptische Systeme ohne Elektronik-Bottlenecks.</div>
+    <blockquote>Let me give you an update on what I’ve been digging into the past few days.
+
+The easy money was transceivers. That trade is crowded now.
+
+The next move isn’t “faster optics”.. its removing electronics from the system entirely.
+
+OCS, optical fabrics, photonic memory interconnect</blockquote>
+    
+    
+    <div class="card-action">🎯 Prüfen: Welche Portfolio-Positionen sind reine Transceiver-Plays vs. OCS/Photonic-Fabric-Enabler? Positionsgrößen evaluieren.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Yiannis</span>
+        <span class="ticker">CRWV</span> <span class="ticker">IREN</span> <span class="ticker">NVDA</span> <span class="ticker">NBIS</span>
+        <a class="tweet-link" href="https://twitter.com/yianisz/status/2046966254695514399" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">GPU-Preisexplosion (B200 $2.7→$4-6, Hyperscaler-Spot $14) validiert NBIS-Pricing-Power und Neo-Cloud-Wettbewerbsposition gegen IREN/CRWV.</div>
+    <blockquote>Everyone’s still underestimating how obvious $NBIS is here.
+
+GPU prices are ripping. $NVDA&#x27;s B200 went from ~$2.7 to $4–6+ and hyperscaler spot is basically rationed at $14.
+
+And people still model NBIS like nothing changed?
+
+So when GPU pricing moves, $IREN competes, $CRWV …</blockquote>
+    <div class="impact-tag">€138,263 Exposure</div>
+    
+    <div class="card-action">🎯 CRWV Watchlist: Prüfen ob aktuelle GPU-Spot-Preis-Rally ($14) + Microsoft-Konzentrations-Tracking Entry-Trigger aktiviert (Bewertung &lt;15x checken).</div>
+    <span class="theme-tag">ai datacenter neoclouds</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Yiannis</span>
+        <span class="ticker">NBIS</span>
+        <a class="tweet-link" href="https://twitter.com/yianisz/status/2046955691525476582" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">NBIS&#x27;s Convertible Notes 2031 haben 1,25% Coupon vs. CoreWeave 9–9,75% — signalisiert extreme Investoren-Konfidenz in NBIS&#x27;s Credit-Qualität.</div>
+    <blockquote>@CWB_Research im just using the companies’ own debt deal terms and standard bond screens, not anything special. 
+
+NBIS’s March 2026 convertible notes price the 2031 tranche at a 1.25% coupon in the official offering docs, while CoreWeave’s recent senior notes are coming at 9–9.75…</blockquote>
+    <div class="impact-tag">€83,781 Exposure</div>
+    
+    <div class="card-action">🎯 Kein Action nötig — Position halten. Günstige Debt-Terms bestätigen fundamentale Stärke trotz 414x P/E Valuation-Stretch.</div>
+    <span class="theme-tag">ai datacenter neoclouds</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Yiannis</span>
+        <span class="ticker">LITE</span> <span class="ticker">MTSI</span>
+        <a class="tweet-link" href="https://twitter.com/yianisz/status/2046953806856958135" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Yiannis kontrastiert MTSI (unterbewertet, Fab-Leverage) vs. LITE (Momentum-Chase) im 1.6T/3.2T Optics-Supercycle.</div>
+    <blockquote>$MTSI is sitting right in the middle of 1.6T/3.2T optics + OCS… and no one cares because the crowd is still chasing $LITE-style momentum.
+
+Margins look weak? That’s the point. Underutilized fabs are a coiled spring when they fill, margins don’t drift, they snap.
+
+Insider selling …</blockquote>
+    <div class="impact-tag">€10,517 Exposure</div>
+    
+    <div class="card-action">🎯 Prüfen: Ist LITE-Korrektur auf &lt;52w-High eingetreten für Watchlist-Entry, während MTSI weiter akkumuliert wird?</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Yiannis</span>
+        <span class="ticker">CRWV</span> <span class="ticker">NBIS</span>
+        <a class="tweet-link" href="https://twitter.com/yianisz/status/2046939075005829158" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Goldman hebt META-PT auf $205, NBIS-Credit-Spread 1,25% vs CRWV ~10% signalisiert deutlich niedrigeres Risiko trotz ähnlicher Geschäftsmodelle.</div>
+    <blockquote>Here is why I am so bullish on $NBIS right now..
+
+Goldman going  from: $68 &amp;gt; $160 &amp;gt; $205 after $META isn’t bullish… it’s them admitting they completely misread the duration. They’re catching up, not leading.
+
+Meanwhile credit guys price NBIS at 1.25% vs $CRWV ~10%. …</blockquote>
+    <div class="impact-tag">€83,781 Exposure</div>
+    
+    <div class="card-action">🎯 CRWV-Watchlist: Credit-Spread ~10% vs NBIS 1,25% prüfen ob Microsoft-Konzentrationsrisiko bereits eingepreist, Entry-Trigger Bewertung &lt;15x EV/Rev abwarten.</div>
+    <span class="theme-tag">ai datacenter neoclouds</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">ASML</span> <span class="ticker">TSM</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047185481285439665" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Tweet diskutiert Semiconductor-Wertschöpfungskette als AMD-Profiteure: TSM/OSAT für Packaging, Equipment-Maker ASML/AMAT/LRCX/KLAC als indirekte Gewinner.</div>
+    <blockquote>@northyvt I feel like $TSM and OSAT/advanced packaging partners are the main beneficiaries apart from $AMD?
+
+Maybe like $AMAT, $LRCX, $KLAC, $ASML and others too? 
+
+$INTC also have their own fabs that they bought back recently so it&#x27;s happy.</blockquote>
+    <div class="impact-tag">€108,045 Exposure</div>
+    
+    
+    <span class="theme-tag">ai semiconductors upstream</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047182611160965383" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">CPU-Knappheit treibt Preise bei Intel und AMD um 10-20% seit März, weitere Erhöhungen Q3 geplant – Engpass hält an.</div>
+    <blockquote>CPU &quot;serious supply shortage&quot;
+
+It&#x27;s still funny to see CPUs become more like memory day-by-day with the price hikes like $SNDK.
+
+&quot;Server CPUs have jumped between 10% and 20% since March&quot; with 
+
+$INTC and $AMD planning to further price hikes Q3.
+
+&quot;CPU…</blockquote>
+    
+    
+    
+    <span class="theme-tag">ai semiconductors upstream</span><span class="theme-tag">ai datacenter neoclouds</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">AIXA</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047120653858623550" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">US-Blockade von AIXA zeigt kritische Rolle für Photonik-Supply-Chains; bestätigt strategische Wichtigkeit der Duopol-Position.</div>
+    <blockquote>@R2Discovery Yes stuff like this is another example, if US didn&#x27;t block $AIXA, which is critical for photonics buildout...
+
+Western supply chains would be an absolutely horrible spot.
+
+But there&#x27;s some niche upstream companies the governments miss.</blockquote>
+    <div class="impact-tag">€24,378 Exposure</div>
+    
+    <div class="card-action">🎯 Monitoring ob &#x27;niche upstream companies governments miss&#x27; Konkurrenz impliziert oder nur nachgelagerte Supply-Chain-Player meint.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">SOI</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047113416767357288" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">SOI wird als Monopolist für Silicon-Photonics-Substrate bezeichnet; Sorge über EU-Technologietransfer zu China, aber US-Nachfrage als Schutz.</div>
+    <blockquote>@Sopcaja Yes stuff like this is the perfect example. $SOI is a monopoly over substrates needed for silicon photonics. 
+
+French regulators caught on. But there&#x27;s so many European nations that are complicit in technology transfer to the CCP. 
+
+Only thing to prevent this is eno…</blockquote>
+    <div class="impact-tag">€13,990 Exposure</div>
+    
+    
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">SIVE</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047110496999137730" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Aleabit kündigt Investment-These zu EU Small Caps an, erwähnt SIVE (DFB Lasers) als Teil seiner Photonics-Screening-Strategie.</div>
+    <blockquote>There&#x27;s a reason I spotlight EU small caps.
+
+This my investment thesis that I haven&#x27;t publicly stated yet.
+
+And I hope people spend the time to read:
+
+From $ALRIB (quantum/MBE), $LPK (glass substrate), or $SIVE (DFB Lasers). Or even Asian names like Nippon Chemical. 
+
+I…</blockquote>
+    <div class="impact-tag">€140,692 Exposure</div>
+    
+    <div class="card-action">🎯 Thread-Fortsetzung monitoren – Aleabit kündigt detaillierte Investment-These an, könnte neue Katalysatoren oder Risiken für SIVE aufdecken</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047088296317309115" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Fokus auf Supply-Chain-Wachstum in Taiwan, Europa, Japan für Hyperscaler-Beschleunigung; bestätigt geografische Diversifikation der AI-Infrastruktur-Investmentthese.</div>
+    <blockquote>@MajorOcelot45 I’m always focused on making America #1. Im sure quite a few people outside the country might get upset though.
+
+Part of that includes accelerating supply chain growth overseas too in Taiwan, Europe, and Japan too (my overall investment thesis).
+
+To make sure hyper…</blockquote>
+    
+    
+    
+    <span class="theme-tag">ai semiconductors upstream</span><span class="theme-tag">ai datacenter neoclouds</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047087338996854925" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Bullish auf Intel wegen nationaler Halbleiter-Souveränität; plädiert für staatliche Capex-Subventionen bis zur Profitabilität.</div>
+    <blockquote>@Adnan_M01 I’m a fan of $INTC now and that was the very first company I worked at.
+
+America needs to secure sovereignty over its advanced semiconductor supply chains.
+
+Part of that is subsidizing the capex until profitability.</blockquote>
+    
+    
+    
+    <span class="theme-tag">ai semiconductors upstream</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047054864040308895" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">ARM-Aktie steigt 12% an einem Tag trotz 200B+ Marktkapitalisierung – ungewöhnliche Volatilität für Mega-Cap Chip-Designer.</div>
+    <blockquote>Bruh it’s only been one day with $ARM.
+
+How does a $200B+ company go up 12% https://t.co/4BNSjjk88c https://t.co/9XiYkbN8fC</blockquote>
+    
+    
+    <div class="card-action">🎯 ARM-Bewegung als Sektor-Sentiment-Indikator beobachten – prüfen ob andere Chip-Positionen mitziehen.</div>
+    <span class="theme-tag">ai semiconductors upstream</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047030798554132901" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Defense Production Act unterstützt US-Stromnetz-Ausbau; profitieren Transmission-Firmen wie AMSC, PLPC, ATKR - validiert AI-Infrastruktur-Thesis.</div>
+    <blockquote>Yes. The President invoked the &quot;Defense Production Act&quot; 2 days ago.
+
+To expand on domestic infra.
+ 
+Implicit beneficiaries were:
+
+Transmission &amp;amp; Advanced Conductors:
+$AMSC - HTS Wires (advanced conductors), power electronics
+$PLPC - advanced conductors 
+$ATKR - …</blockquote>
+    
+    
+    <div class="card-action">🎯 AMSC, PLPC, ATKR als potenzielle Ergänzungen zum electrical infrastructure Theme screenen.</div>
+    <span class="theme-tag">ai electrical infrastructure</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">NVDA</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047022399246475331" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Investor präferiert Photonics-Theme über NVDA-Exposure-Plays, sieht NVTS als klein. Bestätigt Tims ai_photonics-Priorisierung gegenüber NVDA-Satelliten.</div>
+    <blockquote>@daniel_koss thanks! small positions on $NVTS though. I find photonics theme more compelling overall. 
+
+People don&#x27;t need to get exposure to every story that pops up with $NVDA.</blockquote>
+    
+    
+    
+    <span class="theme-tag">ai photonics optical supercycle</span><span class="theme-tag">ai semiconductors upstream</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">NVDA</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047019381637677061" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">NVDA treibt 800V-DC-Infrastruktur für Datacenter voran, Signal für elektrische Infrastruktur-Eskalation im AI-Stack.</div>
+    <blockquote>$NVDA actively pushing to 800V, and today was a pretty big signal. 
+
+&quot;On April 22, 2026, NVIDIA has initiated discussions with major South Korean power equipment companies to explore designing DC infra based on an approximately 800V direct current (DC) system&quot;
+
+Previous…</blockquote>
+    
+    
+    <div class="card-action">🎯 Prüfe Exposure zu 800V-DC-Power-Equipment-Playern (Eaton, Vertiv) im ai_electrical_infrastructure-Theme.</div>
+    <span class="theme-tag">ai electrical infrastructure</span><span class="theme-tag">ai datacenter neoclouds</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">SIVE</span> <span class="ticker">MRVL</span> <span class="ticker">POET</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2046918449168085183" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">POET +20% premarket wegen Bestellüberschuss und MRVL-Supplier-Beziehung; Tweet vermutet positive Implikation für SIVE Laser-Produktion.</div>
+    <blockquote>Oh wow, I missed this.
+
+That&#x27;s probably why $POET is up 20.2% pre-market confirming &quot;far in excess&quot; of purchase orders on top of $MRVL supplier relationships. 
+
+That translates materially to $SIVE laser production as well.
+
+Markets haven&#x27;t fully priced in eith…</blockquote>
+    <div class="impact-tag">€166,088 Exposure</div>
+    
+    <div class="card-action">🎯 POET Entry-Trigger prüfen falls Commercial Revenue-Daten verfügbar; SIVE-Position halten, auf Jabil-Katalysator 27.04.2026 fokussieren.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">SIVE</span> <span class="ticker">AXTI</span> <span class="ticker">IQE</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2046906948088435024" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Aleabit verteidigt seine SIVE-These gegen schwedische Medienkritik, verweist auf institutionelles Interesse analog IQE/AXTI-Erfolg.</div>
+    <blockquote>Bro everyone was doubting me on names like $IQE.
+
+Yet how come… all these institutions from UBS or Point72 buy in after my thesis posts?
+
+Not sure if Swedish media bearposting $SIVE realized who found $AXTI?  
+
+I’m very confident institutions will likely follow-in soon given http…</blockquote>
+    <div class="impact-tag">€211,414 Exposure</div>
+    
+    <div class="card-action">🎯 Schwedische Media-Bearpostings zu SIVE monitoren – wenn substanziell (nicht nur Sentiment), gegen Bear-Trigger-Liste abgleichen.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">AXTI</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2046896671775494625" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Aleabitoreddit differenziert: AXTI war Bottleneck (Historie), neue Photonics-Architektur (glass core, DFB lasers) sind multi-year Supercycle-Chokepoints bis 2028+.</div>
+    <blockquote>@ThatIsIt11 These are chokepoints over multiple year supercycles not bottlenecks. 
+
+$AXTI, $SNDK fit the definition of a bottleneck.
+
+But stuff like glass core or dfb lasers should scale past 2028 and this is the beginning of the next volume ramp from architectural shifts in phot…</blockquote>
+    
+    
+    <div class="card-action">🎯 Keine Aktion nötig – Tweet ist bullish-neutral für AXTI-These, kein Bear-Trigger, Re-Entry-Plan (Vote NEIN → €15k) bleibt gültig.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">SIVE</span> <span class="ticker">MRVL</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2046895953341464661" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Bullish SIVE Valuation-Call ($2B heute, $10B+ nächstes Jahr) mit Volumen-Ramp durch Ayar, Marvell, Jabil ab 2028.</div>
+    <blockquote>@scrotum_pensif I still think $SIVE should be valued $2B today and can hit $10B+ next year depending on volume ramp from Ayar, $MRVL, $JBL and others in 2028
+
+They have all the stars aligned right now.</blockquote>
+    <div class="impact-tag">€166,088 Exposure</div>
+    
+    <div class="card-action">🎯 Monitoring intensivieren: Jabil-Statements zu SIVE-Volumen vor 27.04.2026 Annual Report als Frühindikator beobachten.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span><span class="theme-tag">ai semiconductors upstream</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">IQE</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2046884581471928778" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Autor fragt ob jemand IQE hält und hebt starke Performance europäischer Halbleiter-Picks hervor – positives Momentum-Signal.</div>
+    <blockquote>Uhh… did listen anon with $IQE?
+
+Just ridiculous performance in European semi land… and they all happen to be my picks. https://t.co/hoA4W0un3i https://t.co/rRCORshRmj</blockquote>
+    <div class="impact-tag">€70,722 Exposure</div>
+    
+    
+    <span class="theme-tag">ai semiconductors upstream</span><span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">SIVE</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2046881587342823802" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Schwedische Medien attackieren SIVE täglich, während US-Investoren die lokalen Verkäufe aufkaufen und Kontrolle übernehmen.</div>
+    <blockquote>@ThriveSnap Probably because every morning there’s some local Swedish hit piece on $SIVE.
+
+Then Americans just buy everything locals sell. 
+
+Thats how control of the company gets transferred while it’s still small.</blockquote>
+    <div class="impact-tag">€140,692 Exposure</div>
+    
+    <div class="card-action">🎯 Schwedische Morning-Dips könnten Nachkauf-Gelegenheiten vor 27.04.2026 bieten, falls Conviction hält.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Yiannis</span>
+        <span class="ticker">TSEM</span>
+        <a class="tweet-link" href="https://twitter.com/yianisz/status/2046952754531209620" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">ALMU wurde als Fraud bezeichnet, aber TSEM-Partnerschaft in finanziertem Programm validiert nun die Technologie und Skalierbarkeit.</div>
+    <blockquote>$ALMU was called a fraud not long ago… and that’s exactly why this setup is interesting.
+
+The bear case was simple: no real path to scale, no serious partners, just a science project. Then $TSEM shows up publicly inside a funded program and that narrative breaks.
+
+That doesn’t ht…</blockquote>
+    <div class="impact-tag">€11,073 Exposure</div>
+    
+    <div class="card-action">🎯 ALMU als potentielles Add zu ai_photonics_optical_supercycle screenen – TSEM-Partnerschaft ist Qualitätssignal für deren Technologie.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Yiannis</span>
+        <span class="ticker">AAOI</span> <span class="ticker">LITE</span> <span class="ticker">POET</span> <span class="ticker">COHR</span>
+        <a class="tweet-link" href="https://twitter.com/yianisz/status/2046882904249106546" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">POET hat seit Yiannis&#x27; Einstieg verdoppelt, Short-Narrativ um PFIC-Risiko wurde durch Management-Maßnahmen neutralisiert, neues 52-Wochen-Hoch erreicht.</div>
+    <blockquote>$POET has doubled since I went long right after running through $AAOI, $LITE, $COHR..
+
+the stock broke the short narrative. Wolfpack went after PFIC risk, management neutralized it (QEF + potential redomicile) and suddenly the reason to be short got shaky.
+
+Add a 52-week high + h…</blockquote>
+    <div class="impact-tag">€32,668 Exposure</div>
+    
+    <div class="card-action">🎯 POET Entry-Trigger-Monitoring: Falls Commercial Revenue-Announcement kommt, könnte dies Serenity-Re-Coverage triggern und Entry-Gelegenheit schaffen.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">TSM</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047033986481037769" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Tweet vergleicht US-Subventionen für Halbleiter-Fabs (TSM) mit Förderung für Transformatoren/Switchgear-Produktion in Nordamerika.</div>
+    <blockquote>@PeterSikachev It&#x27;s like giving grants to Korea Zinc to build refineries in the US or $TSM to build foundries in the US.
+
+$HPS.A is largest dry transformers -&amp;gt; switchgear in north america, and they have critical production facilities in US too like Wisconsin/Californi…</blockquote>
+    <div class="impact-tag">€77,863 Exposure</div>
+    
+    
+    <span class="theme-tag">ai electrical infrastructure</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2047031793489256489" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">$HPS.A für Transformers mit +49.4% Performance; langsamer Compounder aber kritisch für nationale Sicherheit im AI-Infrastruktur-Bereich.</div>
+    <blockquote>@mi20483980476 Yes I like $HPS.A and did an individual thesis post on them awhile back for transformers. 
+
+It&#x27;s up 49.4% so far? 
+
+These names are slower compounders compared to pure play AI ones... But critical to national security.</blockquote>
+    
+    
+    <div class="card-action">🎯 Prüfen ob $HPS.A als defensive Diversifikation zum bestehenden AI-Electrical-Infrastructure-Exposure passt.</div>
+    <span class="theme-tag">ai electrical infrastructure</span>
+</div></div>
+    </div>
+    <div class="col col-wackelt">
+        <div class="col-header" style="background: rgba(243, 156, 18, 0.15); color: #F39C12;">
+            <div class="col-title">🟡 WACKELT / WATCH</div>
+            <div class="col-count">2</div>
+        </div>
+        <div class="col-body"><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Serenity</span>
+        <span class="ticker">IQE</span> <span class="ticker">SOI</span> <span class="ticker">SIVE</span> <span class="ticker">POET</span>
+        <a class="tweet-link" href="https://twitter.com/aleabitoreddit/status/2046894773706035638" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Europäische AI-Zulieferer rallyen stark; IQE +12%, SOI +11%, SIVE -5% nach schwedischem Negativartikel, POET stabil.</div>
+    <blockquote>Europe seems to be having a fun time from AI.
+
+$LPK +20.69% - (glass core substrates) +20.69%
+$IQE - 12.22% - (InP epiwafers)
+$SOI +11.02% - (silicon photonics substrates) 
+$ALRIB +5.8% - (MBE / Quantum)
+
+Then there’s $SIVE down -4.7% from a local Swedish hit piece, while $POET h…</blockquote>
+    <div class="impact-tag">€225,404 Exposure</div>
+    
+    <div class="card-action">🎯 Schwedischen SIVE-Artikel sofort beschaffen und auf Bear-Trigger prüfen (O-Net/Jabil-Zweifel, Capital-Raise-Gerüchte); ggf. Hedging erwägen.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div><div class="tcard">
+    <div class="tcard-head">
+        <span class="tcard-author">@Yiannis</span>
+        <span class="ticker">MTSI</span>
+        <a class="tweet-link" href="https://twitter.com/yianisz/status/2046956038570611091" target="_blank">↗</a>
+    </div>
+    <div class="tcard-summary">Yiannis sieht bei MTSI weiteres Upside, realisiert aber, dass die Aktie hinterherhinkt – Performance-Beobachtung ohne konkrete Katalysatoren.</div>
+    <blockquote>@InvestWithTimmy yes there is more upside here but I realized that mtsi is lagging</blockquote>
+    <div class="impact-tag">€10,517 Exposure</div>
+    
+    <div class="card-action">🎯 Monitoring fortsetzen: Prüfen ob Q1-Earnings (Ende April) CW-Laser-Fortschritt und DC-Guidance bestätigen, sonst Rotation erwägen.</div>
+    <span class="theme-tag">ai photonics optical supercycle</span>
+</div></div>
+    </div>
+    <div class="col col-bear">
+        <div class="col-header" style="background: rgba(231, 76, 60, 0.15); color: #E74C3C;">
+            <div class="col-title">🔴 BEAR-TRIGGERS</div>
+            <div class="col-count">0</div>
+        </div>
+        <div class="col-body"><div class="col-empty">Keine Signale</div></div>
+    </div>
+</section><section class="section">
+    <h2 class="section-title">🎯 Conviction Tracker <span class="section-sub">(Analyst-Aktivität heute)</span></h2>
+    <div class="conv-list"><div class="conv-row">
+    <div class="conv-author">@Serenity</div>
+    <div class="conv-stats">34 Tweets ·  🟡 🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢</div>
+    <div class="conv-tickers"><span class="conv-ticker">AIXA</span>, <span class="conv-ticker">ASML</span>, <span class="conv-ticker">AXTI</span>, <span class="conv-ticker">IQE</span>, <span class="conv-ticker">MRVL</span>, <span class="conv-ticker">NVDA</span>, <span class="conv-ticker">POET</span>, <span class="conv-ticker">SIVE</span>, <span class="conv-ticker">SOI</span>, <span class="conv-ticker">TSM</span></div>
+</div><div class="conv-row">
+    <div class="conv-author">@Yiannis</div>
+    <div class="conv-stats">10 Tweets ·  🟡 🟢🟢🟢🟢🟢🟢🟢</div>
+    <div class="conv-tickers"><span class="conv-ticker">AAOI</span>, <span class="conv-ticker">COHR</span>, <span class="conv-ticker">CRWV</span>, <span class="conv-ticker">IREN</span>, <span class="conv-ticker">LITE</span>, <span class="conv-ticker">MTSI</span>, <span class="conv-ticker">NBIS</span>, <span class="conv-ticker">NVDA</span>, <span class="conv-ticker">POET</span>, <span class="conv-ticker">TSEM</span></div>
+</div><div class="conv-row">
+    <div class="conv-author">@Moody</div>
+    <div class="conv-stats">4 Tweets ·   </div>
+    <div class="conv-tickers"><span class="conv-ticker">NYNOMIC</span></div>
+</div></div>
+</section><section class="section ti-section">
+    <h2 class="section-title">📥 Team Intelligence <span class="section-sub">(12 Einträge heute)</span></h2>
+    <div class="ti-grid"><div class="ti-card" style="border-left: 4px solid #cbd5e1; background: #f8fafc;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #e2e8f0; color: #475569;">/AUTO</span>
+        <span class="ti-author">@Leon</span>
+        
+        
+        
+    </div>
+    <div class="ti-summary">Leon hat ein PDF ohne Kontext hochgeladen und fragt nach Implikationen – keine Analyse möglich ohne Inhalt.</div>
+    <blockquote>[PDF] Implikationen für uns?</blockquote>
+    
+    <div class="card-action">🎯 Leon bitten, PDF-Inhalt zusammenzufassen oder Ticker/Thema zu nennen, damit Analyse möglich wird.</div>
+</div><div class="ti-card" style="border-left: 4px solid #cbd5e1; background: #f8fafc;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #e2e8f0; color: #475569;">/AUTO</span>
+        <span class="ti-author">@Tim</span>
+        
+        
+        
+    </div>
+    <div class="ti-summary">Foto ohne erkennbaren Inhalt oder Kontext eingereicht – keine Analyse möglich ohne Bildinformation.</div>
+    <blockquote>[FOTO] Auswirkungen auf unser depot?</blockquote>
+    
+    <div class="card-action">🎯 Bitte Bildinhalt beschreiben oder relevante Information als Text nachreichen für fundierte Analyse.</div>
+</div><div class="ti-card" style="border-left: 4px solid #cbd5e1; background: #f8fafc;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #e2e8f0; color: #475569;">/AUTO</span>
+        <span class="ti-author">@Tim</span>
+        
+        
+        
+    </div>
+    <div class="ti-summary">Kontextlose Frage ohne Bezugsnachricht - keine Analyse möglich ohne vorherige Nachricht oder Quelle.</div>
+    <blockquote>was für implikationen hat das auf uns?</blockquote>
+    
+    <div class="card-action">🎯 Bitte vorherige Nachricht, Artikel oder Kontext nachreichen, um Portfolio-Implikationen bewerten zu können.</div>
+</div><div class="ti-card" style="border-left: 4px solid #cbd5e1; background: #f8fafc;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #e2e8f0; color: #475569;">/AUTO</span>
+        <span class="ti-author">@Tim</span>
+        
+        
+        
+    </div>
+    <div class="ti-summary">Tim hat einen PDF-Anhang nachgereicht – Inhalt unbekannt, keine Investment-Relevanz ohne Kontext erkennbar.</div>
+    <blockquote>[PDF] jetzt hat es den anhang</blockquote>
+    
+    <div class="card-action">🎯 PDF-Inhalt analysieren sobald verfügbar, um Investment-Relevanz zu prüfen.</div>
+</div><div class="ti-card" style="border-left: 4px solid #16a34a; background: #f8fafc;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #e2e8f0; color: #475569;">/AUTO</span>
+        <span class="ti-author">@Tim</span>
+        
+        
+        
+    </div>
+    <div class="ti-summary">SK Hynix Earnings-Analyse angefragt – direkter HBM-Supplier für AI-Chips, relevant für Semiconductor-Upstream-Theme.</div>
+    <blockquote>kannst du die sk hynix earnings analysieren und sage ob es einfluss auf uns hat?</blockquote>
+    
+    <div class="card-action">🎯 Analysiere SK Hynix Q4/FY24 Earnings (Revenue, HBM3E-Entwicklung, Guidance für 2025, Capex-Pläne) und vergleiche mit Konsensus. Prüfe Kommentare zu AI-Accelerator-Nachfrage (NVIDIA, AMD, Hyperscaler) und HBM-Pricing-Power. Falls Material: Implikationen für TSM, ASML, AMAT und andere Upstream-Plays ableiten.</div>
+</div><div class="ti-card" style="border-left: 4px solid #cbd5e1; background: #f8fafc;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #e2e8f0; color: #475569;">/AUTO</span>
+        <span class="ti-author">@Tim</span>
+        
+        
+        
+    </div>
+    <div class="ti-summary">Tim fragt nach dem ausgebliebenen Daily Report - operationelle Anfrage, keine Investment-Information.</div>
+    <blockquote>wo bleibt unser daily report?</blockquote>
+    
+    <div class="card-action">🎯 Daily Report umgehend bereitstellen und Prozess-Monitoring für automatisierte Berichterstattung prüfen.</div>
+</div><div class="ti-card" style="border-left: 4px solid #16a34a; background: #f8fafc;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #e2e8f0; color: #475569;">🟢 BOT</span>
+        <span class="ti-author">@Leon</span>
+        <span class="ti-time">04:55</span>
+        
+        
+    </div>
+    <div class="ti-claude-response">Analyse-Fehler — bitte nochmal versuchen</div>
+    <blockquote>[PDF] Implikationen für uns?</blockquote>
+    
+    
+</div><div class="ti-card" style="border-left: 4px solid #dc2626; background: #fef2f2;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #fecaca; color: #dc2626;">🔴 BOT</span>
+        <span class="ti-author">@Tim</span>
+        <span class="ti-time">04:55</span>
+        <span class="ticker">AEHR</span> <span class="ticker">AIXA</span> <span class="ticker">IQE</span> <span class="ticker">ASML</span> <span class="ticker">SIVE</span> <span class="ticker">TSM</span>
+        
+    </div>
+    <div class="ti-claude-response">[SIGNAL] 🔴 BEARISH
+Für: ASML
+
+[SIGNAL] 🟢 BULLISH
+Für: TSM, AEHR, SIVE, IQE, AIXA
+
+[WARUM]
+- TSMC verzögert High-NA EUV Adoption auf A10-Node (~2030/31) — direkt bearish für ASML&#x27;s High-NA-Umsatzramp, die für 2026–28 eingepreist ist
+- ASML High-NA (TWINSCAN EXE) kostet ~€350–380M/Stück — TSMC-Absage reduziert adressierbaren Markt signifikant, da TSMC der grösste Einzelkunde ist
+- Bullish für TSMC: …</div>
+    <blockquote>[FOTO] Auswirkungen auf unser depot?</blockquote>
+    
+    
+</div><div class="ti-card" style="border-left: 4px solid #16a34a; background: #f8fafc;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #e2e8f0; color: #475569;">🟢 BOT</span>
+        <span class="ti-author">@Tim</span>
+        <span class="ti-time">05:03</span>
+        
+        
+    </div>
+    <div class="ti-claude-response">Es fehlt ein Input — du hast keine News, kein Event und keinen Kontext mitgeschickt, auf den ich reagieren soll.
+
+Schick mir:
+- eine Headline / einen Artikel
+- ein Earnings-Ergebnis
+- eine Marktbewegung
+- oder eine konkrete Frage zu einer Position
+
+Dann analysiere ich sofort.</div>
+    <blockquote>was für implikationen hat das auf uns?</blockquote>
+    
+    
+</div><div class="ti-card" style="border-left: 4px solid #16a34a; background: #f8fafc;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #e2e8f0; color: #475569;">🟢 BOT</span>
+        <span class="ti-author">@Tim</span>
+        <span class="ti-time">05:04</span>
+        <span class="ticker">HUT</span> <span class="ticker">IREN</span> <span class="ticker">NBIS</span> <span class="ticker">VRT</span> <span class="ticker">AIXA</span> <span class="ticker">AAOI</span>
+        
+    </div>
+    <div class="ti-claude-response">[SIGNAL] 🟢 BULLISH
+Für: TSM, NBIS, IREN, HUT, VRT
+
+[SIGNAL] 🟡 NEUTRAL
+Für: SIVE, IQE, AAOI, AIXA, MRVL
+
+[WARUM]
+- SpaceXAI Colossus: 555.000 NVIDIA GPUs, 2 GW Power, $659M Expansion laufend — GPU-Demand-Signal ungebrochen, bestätigt ai_datacenter_neoclouds und ai_cooling_thermal (VRT profitiert direkt von Liquid-Cooling-Ausbau bei Extreme-Density-Clustern)
+- xAI-Infrastruktur-Expansion läuft trotz…</div>
+    <blockquote>[PDF] jetzt hat es den anhang</blockquote>
+    
+    
+</div><div class="ti-card" style="border-left: 4px solid #dc2626; background: #fef2f2;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #fecaca; color: #dc2626;">🔴 BOT</span>
+        <span class="ti-author">@Tim</span>
+        <span class="ti-time">05:14</span>
+        <span class="ticker">AAOI</span> <span class="ticker">IQE</span> <span class="ticker">ASML</span> <span class="ticker">SIVE</span> <span class="ticker">000660</span> <span class="ticker">TSM</span>
+        
+    </div>
+    <div class="ti-claude-response">SK Hynix Q1 2025 Earnings — veröffentlicht 24. April 2025
+
+[SIGNAL] 🟢 BULLISH
+Für: 000660 (SK Hynix), TSM, ASML, SIVE, IQE, AAOI
+
+[WARUM]
+- HBM3e revenue +100% QoQ, HBM macht jetzt &gt;40% des DRAM-Revenue aus — NVIDIA-Lieferkette intakt, kein Design-Win-Verlust an Samsung
+- Operating Profit KRW 7,4T (Beat vs. Konsens ~6,8T) — Pricing-Power bei Premium-DRAM bestätigt, kein Margendruck sichtbar
+- Mana…</div>
+    <blockquote>kannst du die sk hynix earnings analysieren und sage ob es einfluss auf uns hat?</blockquote>
+    
+    
+</div><div class="ti-card" style="border-left: 4px solid #dc2626; background: #fef2f2;">
+    <div class="ti-head">
+        <span class="ti-badge" style="background: #fecaca; color: #dc2626;">🔴 BOT</span>
+        <span class="ti-author">@Tim</span>
+        <span class="ti-time">05:17</span>
+        
+        
+    </div>
+    <div class="ti-claude-response">Kein automatischer Daily-Report-Generator ist in meinem System hinterlegt — ich reagiere auf Inputs, generiere aber keine zeitgesteuerten Reports ohne Trigger.
+
+Wenn du den Daily-Report jetzt willst: sag mir kurz welches Format du gewohnt bist (Portfolio-Übersicht, Bear-Trigger-Check, Events-Countdown, News-Scan) und ich baue ihn dir sofort zusammen.</div>
+    <blockquote>wo bleibt unser daily report?</blockquote>
+    
+    
+</div></div>
+</section><section class="section">
+    <h2 class="section-title">👁 Watchlist Activity <span class="section-sub">(Tweets über Watch-Tickers)</span></h2>
+    <div class="watch-list"><div class="watch-row">
+    <div class="watch-ticker">POET</div>
+    <div class="watch-info">
+        <div class="watch-summary">Europäische AI-Zulieferer rallyen stark; IQE +12%, SOI +11%, SIVE -5% nach schwedischem Negativartikel, POET stabil.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Commercial Revenue-Traction-Announcement + erneute Serenity-Coverage</div>
+        <div class="watch-meta">@Serenity</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">POET</div>
+    <div class="watch-info">
+        <div class="watch-summary">POET bestätigt Marvell-Lieferbeziehung, Tweet impliziert SIVE als upstream Laser-Supplier in dieser Supply-Chain – validiert Tims SIVE-Thesis-Kette.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Commercial Revenue-Traction-Announcement + erneute Serenity-Coverage</div>
+        <div class="watch-meta">@Serenity</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">CRWV</div>
+    <div class="watch-info">
+        <div class="watch-summary">GPU-Preisexplosion (B200 $2.7→$4-6, Hyperscaler-Spot $14) validiert NBIS-Pricing-Power und Neo-Cloud-Wettbewerbsposition gegen IREN/CRWV.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Bewertung &lt;15x EV/Revenue + MSFT-Vertragsverlängerung bestätigt</div>
+        <div class="watch-meta">@Yiannis</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">NVDA</div>
+    <div class="watch-info">
+        <div class="watch-summary">GPU-Preisexplosion (B200 $2.7→$4-6, Hyperscaler-Spot $14) validiert NBIS-Pricing-Power und Neo-Cloud-Wettbewerbsposition gegen IREN/CRWV.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Signifikante Multiple-Kompression &lt;25x EV/EBITDA — unwahrscheinlich bis Phase-3-Rotation</div>
+        <div class="watch-meta">@Yiannis</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">LITE</div>
+    <div class="watch-info">
+        <div class="watch-summary">Yiannis kontrastiert MTSI (unterbewertet, Fab-Leverage) vs. LITE (Momentum-Chase) im 1.6T/3.2T Optics-Supercycle.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Book-to-Bill-Bestätigung Q1/Q2 + Korrektur auf &lt;52w-High-Niveau oder Aufstockung nach OFC-Design-Win-Announcement</div>
+        <div class="watch-meta">@Yiannis</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">CRWV</div>
+    <div class="watch-info">
+        <div class="watch-summary">Goldman hebt META-PT auf $205, NBIS-Credit-Spread 1,25% vs CRWV ~10% signalisiert deutlich niedrigeres Risiko trotz ähnlicher Geschäftsmodelle.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Bewertung &lt;15x EV/Revenue + MSFT-Vertragsverlängerung bestätigt</div>
+        <div class="watch-meta">@Yiannis</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">NVDA</div>
+    <div class="watch-info">
+        <div class="watch-summary">Investor präferiert Photonics-Theme über NVDA-Exposure-Plays, sieht NVTS als klein. Bestätigt Tims ai_photonics-Priorisierung gegenüber NVDA-Satelliten.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Signifikante Multiple-Kompression &lt;25x EV/EBITDA — unwahrscheinlich bis Phase-3-Rotation</div>
+        <div class="watch-meta">@Serenity</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">NVDA</div>
+    <div class="watch-info">
+        <div class="watch-summary">NVDA treibt 800V-DC-Infrastruktur für Datacenter voran, Signal für elektrische Infrastruktur-Eskalation im AI-Stack.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Signifikante Multiple-Kompression &lt;25x EV/EBITDA — unwahrscheinlich bis Phase-3-Rotation</div>
+        <div class="watch-meta">@Serenity</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">POET</div>
+    <div class="watch-info">
+        <div class="watch-summary">POET +20% premarket wegen Bestellüberschuss und MRVL-Supplier-Beziehung; Tweet vermutet positive Implikation für SIVE Laser-Produktion.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Commercial Revenue-Traction-Announcement + erneute Serenity-Coverage</div>
+        <div class="watch-meta">@Serenity</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">AXTI</div>
+    <div class="watch-info">
+        <div class="watch-summary">Aleabit verteidigt seine SIVE-These gegen schwedische Medienkritik, verweist auf institutionelles Interesse analog IQE/AXTI-Erfolg.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> 14.05.2026 Shareholder Vote DILUTION NEIN → Re-Entry ~€15k, Score zurück 7,7</div>
+        <div class="watch-meta">@Serenity</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">AXTI</div>
+    <div class="watch-info">
+        <div class="watch-summary">Aleabitoreddit differenziert: AXTI war Bottleneck (Historie), neue Photonics-Architektur (glass core, DFB lasers) sind multi-year Supercycle-Chokepoints bis 2028+.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> 14.05.2026 Shareholder Vote DILUTION NEIN → Re-Entry ~€15k, Score zurück 7,7</div>
+        <div class="watch-meta">@Serenity</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">LITE</div>
+    <div class="watch-info">
+        <div class="watch-summary">POET hat seit Yiannis&#x27; Einstieg verdoppelt, Short-Narrativ um PFIC-Risiko wurde durch Management-Maßnahmen neutralisiert, neues 52-Wochen-Hoch erreicht.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Book-to-Bill-Bestätigung Q1/Q2 + Korrektur auf &lt;52w-High-Niveau oder Aufstockung nach OFC-Design-Win-Announcement</div>
+        <div class="watch-meta">@Yiannis</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">POET</div>
+    <div class="watch-info">
+        <div class="watch-summary">POET hat seit Yiannis&#x27; Einstieg verdoppelt, Short-Narrativ um PFIC-Risiko wurde durch Management-Maßnahmen neutralisiert, neues 52-Wochen-Hoch erreicht.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Commercial Revenue-Traction-Announcement + erneute Serenity-Coverage</div>
+        <div class="watch-meta">@Yiannis</div>
+    </div>
+</div><div class="watch-row">
+    <div class="watch-ticker">COHR</div>
+    <div class="watch-info">
+        <div class="watch-summary">POET hat seit Yiannis&#x27; Einstieg verdoppelt, Short-Narrativ um PFIC-Risiko wurde durch Management-Maßnahmen neutralisiert, neues 52-Wochen-Hoch erreicht.</div>
+        <div class="watch-trigger"><strong>Entry-Trigger:</strong> Kurs $170–190 bei Q1-Earnings-getriebenem Rücksetzer</div>
+        <div class="watch-meta">@Yiannis</div>
+    </div>
+</div></div>
+</section><section class="section">
+    <h2 class="section-title">🌐 Web-Research <span class="section-sub">(High-Priority Tickers)</span></h2>
+    <div class="web-grid"><div class="web-card">
+    <div class="web-ticker">AAOI</div>
+    <div class="web-text"><strong>Status:</strong> wackelt<br><br><strong>Aktuelle Lage:</strong> <br><br>AAOI schloss am 22. April bei $149,42 und notierte overnight bei $146,30 (-2,09%)<br>. <br>Am 17. April kündigte das Unternehmen eine massive Expansion in Houston (+388.000 sq ft) an, Zielkapazität 700.000 Transceiver/Monat (800G und 1.6T) sowie +350% Laser-Fab-Kapazität bis Ende 2027<br>. <br>Seit Mitte März hat AAOI $124M an 800G-Orders von einem Hyperscaler erhalten (initialer $53M + $71M Upsizing), Backlog mehr als verdoppelt<br>. <br>Q1-2026-Earnings sind für 7. Mai 2026 angekündigt<br> – genau eine Woche vor deinem Memo-Termin (30.04.). Die Story ist operativ intakt, aber Vorsicht geboten.<br><br><strong>Bear-Trigger aktiviert?</strong> <br><strong>Teilweise aktiviert – Insider-Selling Cluster:</strong> <br>Anfang März 2026 gab es eine „Wave of Insider Selling&quot; mit Verkäufen durch drei Direktoren, darunter ein Verkauf von fast $10M – der bedeutendste Insider-Selling-Cluster in jüngster Geschichte<br>. <br>Ein Direktor verkaufte 102.293 Aktien für $9,8M (−83,3% Position), ein anderer Direktor 21.000 Aktien für $2,06M<br>. <br>Zusätzlich verkauften ein SVP/North America GM 36.400 Aktien (~$3,65M) und der CLO 29.000 Aktien (~$2,9M)<br>. Laut Memo-Kriterium sind „mehrere Form 4 innerhalb 30 Tage&quot; ein Bear-Trigger. Kein Guidance-Cut oder ATM-Programm-Aktivität erkennbar, aber das Insider-Selling-Volumen ist ein Warnsignal.<br><br><strong>Quellen:</strong>  <br>- [StockTitan (17. April 2026) – Houston Expansion](https://www.stocktitan.net/news/AAOI/aoi-expands-its-houston-area-footprint-to-900-000-square-feet-to-pfg8a8sfm495.html)  <br>- [Trefis (7. März 2026) – Insider Selling Wave](https://www.trefis.com/articles/592736/applied-optoelectronics-stock-pre-market-5-3-wave-of-insider-selling/2026-03-07)  <br>- [</div>
+</div><div class="web-card">
+    <div class="web-ticker">NBIS</div>
+    <div class="web-text"><strong>Status:</strong> wackelt<br><br><strong>Aktuelle Lage:</strong>  <br><br>NBIS handelte zuletzt bei ~$159, Market Cap ~$40B, P/E 396x<br> — deutlich unter deinem Memo-Wert von 414x, aber im selben extremen Bewertungs-Korridor. <br>Wolfe Research initiierte Mitte April mit „Peer Perform&quot; (Hold) und nannte explizit Execution-Risiko<br>, trotz <br>BofA PT-Erhöhung auf $175<br>. <br>Analysten warnen vor Überbewertung vs. intrinsischem Wert trotz starker Vertrags-Validierung<br>. <br>Nächste Earnings: 29. April 2026<br> — direkt vor der Tür. <br>Nebius in Gesprächen für AI21 Labs-Übernahme<br>, <br>$4,34B Convertible Debt abgeschlossen<br>.<br><br><strong>Bear-Trigger aktiviert?</strong>  <br><strong>Teilweise:</strong> Das <br>Wolfe &quot;Hold&quot;-Rating wegen Execution-Vorsicht<br> plus <br>Analyst-Warnungen zur Valuation<br> signalisiert genau dein Risiko *&quot;414x P/E bleibt trotz Goldman PT $205 = Markt verliert Glauben an ARR-Ramp&quot;*. P/E zwar leicht gesunken, aber Sentiment kippt vorsichtig — Earnings am 29.4. sind der echte Test für ARR-Trajectory. Kein akutes Contract-Payment-Delay oder Yandex-Sanktions-Trigger erkennbar.<br><br><strong>Quellen:</strong>  <br>- [TipRanks/CNBC](https://www.cnbc.com/quotes/NBIS) (Wolfe Hold, 17.4.26)  <br>- [TipRanks Earnings](https://www.tipranks.com/stocks/nbis/earnings) (Q1 2026 Guidance-Check, 29.4. anstehend)  <br>- [Yahoo Finance](https://finance.yahoo.com/quote/NBIS/) (Analyst Valuation-Warnung)</div>
+</div><div class="web-card">
+    <div class="web-ticker">SIVE</div>
+    <div class="web-text"><strong>Status:</strong> confirmed<br><br><strong>Aktuelle Lage:</strong> <br><br>SIVE verzeichnete am 21.04.2026 einen Tagesgewinn von +9,83% auf SEK 34,20<br>. <br>Am 15. April 2026 gab Sivers die Jabil-Kollaboration zur Entwicklung eines 1.6T-Optical-Transceiver-Moduls für AI-Rechenzentren bekannt<br> – dieser Deal treibt die Bewertung weiter. <br>Die Aktie verzeichnete in 30 Tagen +165%, YTD +453% und 1-Jahres-Return nahe 6x<br>. Jedoch: <br>Grossaktionär Achilles Capital/DDM Finance meldeten am 20.04.2026 Restrukturierungsantrag wegen fälliger Anleihen über €225M<br> – dies birgt potenzielle Dilutionsgefahr falls Verkauf von Sivers-Anteilen nötig wird.<br><br><strong>Bear-Trigger aktiviert?</strong> <br><strong>TEILWEISE.</strong> Der <br>Restrukturierungsantrag des Grossaktionärs Achilles Capital<br> könnte mittelfristig <strong>Capital Raise oder Share-Overhang</strong> bedeuten, falls Sivers-Anteile zur Refinanzierung verkauft werden – steht im direkten Bezug zu deinem Bear-Memo &quot;Capital Raise mit &gt;25% Dilution&quot;. Die Jabil-News vom 15.04.2026 bestätigt den Katalysator-Pfad, aber der 27.04.2026 Annual Report (Memo-Datum) steht noch aus – <strong>definitiver Bull/Bear-Watershed am Sonntag</strong>.<br><br><strong>Quellen:</strong> <br>Yahoo Finance (21.04.2026), MarketScreener (Achilles-Restrukturierung, 20.04.2026), Simply Wall St (Jabil-Valuation Analysis, 18.04.2026)</div>
+</div><div class="web-card">
+    <div class="web-ticker">TSM</div>
+    <div class="web-text"><strong>Status:</strong> confirmed<br><br><strong>Aktuelle Lage:</strong> <br><br>TSM meldete Q1/2026 Umsatz von $35,9 Mrd., getrieben von AI-Chip-Nachfrage<br>. <br>Volljahres-Guidance wurde auf &gt;30% YoY-Wachstum angehoben<br>. <br>Bruttomarge verbesserte sich auf 66,2% (+3,9pp sequenziell) durch Kostenverbesserungen und höhere Kapazitätsauslastung<br>. <br>Analysten hoben Kursziele an: Needham auf $480, Barclays auf $450<br>. <br>Am 22. April stellte TSM neue Chip-Technologien vor, die Performance ohne ASMLs High-NA EUV steigern – Aktie +5,26%, ASML -1,09%<br>. <br>CoWoS-Kapazität wird bis Ende 2026 auf 130.000 Wafer/Monat ausgebaut<br>.<br><br><strong>Bear-Trigger aktiviert?</strong> <br><strong>Nein.</strong> Kein Trigger aktiv. Im Gegenteil: <br>CoWoS bleibt ausverkauft bis 2026+, Lead-Times strukturell eng<br> – <strong>keine</strong> Normalisierung auf &lt;6 Monate. Intel-Foundry-Gewinne nicht erwähnt. Monthly Revenue über Konsens. Taiwan-Geopolitik nicht eskaliert.<br><br><strong>Quellen:</strong> <br>CNBC (Q1 Earnings), TradingKey (Kursbewegung 22.04.), GuruFocus (Tech-Ankündigung), TrendForce/FinancialContent (CoWoS-Kapazität)</div>
+</div></div>
+</section><section class="section">
+    <h2 class="section-title">📅 Weitere Events <span class="section-sub">(Earnings & Catalysts)</span></h2>
+    <div class="evt-list"><div class="evt-row evt-urgent">
+    <div class="evt-date">7d · 30.04.</div>
+    <div class="evt-ticker">AAOI</div>
+    <div class="evt-desc">Q1 Earnings  (oder 14.05. — Memory-Quelle vs. externe Quelle)</div>
+</div><div class="evt-row evt-urgent">
+    <div class="evt-date">7d · 30.04.</div>
+    <div class="evt-ticker">AXTI</div>
+    <div class="evt-desc">AXTI Q1 Earnings (2 Wochen vor Vote)</div>
+</div><div class="evt-row ">
+    <div class="evt-date">34d · 27.05.</div>
+    <div class="evt-ticker">SOI</div>
+    <div class="evt-desc">Q4 FY26 Earnings — Photonics-SOI Revenue-Aufgliederung</div>
+</div></div>
+</section><section class="section">
+    <h2 class="section-title">🏷 Theme-Aktivität <span class="section-sub">(Tweets pro Theme)</span></h2>
+    <div class="heatmap"><div class="heat-row">
+    <div class="heat-label">Ai Photonics Optical Supercycle</div>
+    <div class="heat-bar-container"><div class="heat-bar" style="width: 100%"></div></div>
+    <div class="heat-count">21</div>
+</div><div class="heat-row">
+    <div class="heat-label">Ai Semiconductors Upstream</div>
+    <div class="heat-bar-container"><div class="heat-bar" style="width: 48%"></div></div>
+    <div class="heat-count">10</div>
+</div><div class="heat-row">
+    <div class="heat-label">Ai Datacenter Neoclouds</div>
+    <div class="heat-bar-container"><div class="heat-bar" style="width: 29%"></div></div>
+    <div class="heat-count">6</div>
+</div><div class="heat-row">
+    <div class="heat-label">Ai Electrical Infrastructure</div>
+    <div class="heat-bar-container"><div class="heat-bar" style="width: 29%"></div></div>
+    <div class="heat-count">6</div>
+</div><div class="heat-row">
+    <div class="heat-label">Defence</div>
+    <div class="heat-bar-container"><div class="heat-bar" style="width: 10%"></div></div>
+    <div class="heat-count">2</div>
+</div><div class="heat-row">
+    <div class="heat-label">Ai Test Burnin</div>
+    <div class="heat-bar-container"><div class="heat-bar" style="width: 5%"></div></div>
+    <div class="heat-count">1</div>
+</div></div>
+</section><section class="section">
+    <details>
+        <summary><h2 class="section-title section-toggle">📋 Low-Relevance / Noise <span class="section-sub">(18)</span></h2></summary>
+        <div class="low-content"><h3>equity <span class="count">(4)</span></h3><ul class="low-list"><li><strong>@Serenity</strong> <code>—</code> — Kommentar zu taiwanesischen Stocks Win (3105) und Shunsin (6451) mit Fokus auf Foxconn Photonics-Packaging – nicht in Tims Portfolio. · <a href="https://twitter.com/aleabitoreddit/status/2047168499211235609" target="_blank">↗</a></li><li><strong>@Serenity</strong> <code>—</code> — Spekulation über AMSC-Vorteil durch &quot;American&quot;-Naming bei Trump/DoE-Förderungen – reine politische Namens-Thesis ohne Fundamentaldaten. · <a href="https://twitter.com/aleabitoreddit/status/2047036412600680485" target="_blank">↗</a></li><li><strong>@Serenity</strong> <code>—</code> — ASMC profitiert von Defense Production Act durch Advanced Conductors und Power Electronics, MSFT-Verbindung bei HTS-Technologie für Grid-Segment. · <a href="https://twitter.com/aleabitoreddit/status/2047021810550763603" target="_blank">↗</a></li><li><strong>@Serenity</strong> <code>POET</code> — Aleabitoreddit meldet kleine Position in POET. Für Tim nicht relevant, da POET nicht im Depot und nur auf Watchlist. · <a href="https://twitter.com/aleabitoreddit/status/2046919415590228475" target="_blank">↗</a></li></ul><h3>macro <span class="count">(1)</span></h3><ul class="low-list"><li><strong>@Serenity</strong> <code>—</code> — Kritik an taiwanesischen Handelsregeln (Disposition-Regeln), die bei niedriger Liquidität Abwärtsbewegungen verstärken. · <a href="https://twitter.com/aleabitoreddit/status/2047173313152328042" target="_blank">↗</a></li></ul><h3>noise <span class="count">(11)</span></h3><ul class="low-list"><li><strong>@Serenity</strong> <code>—</code> — Autor teilt Research mit Community, erwähnt VSH als guten Pick, betont aber zu viele Namen für vollständige Abdeckung. · <a href="https://twitter.com/aleabitoreddit/status/2047032790764659089" target="_blank">↗</a></li><li><strong>@Serenity</strong> <code>—</code> — Aleabito erwähnt AOSL als Alternative zu NVTS, beide nicht in Tims Portfolio – keine direkte Relevanz. · <a href="https://twitter.com/aleabitoreddit/status/2047021963391238380" target="_blank">↗</a></li><li><strong>@Serenity</strong> <code>—</code> — Antwort-Tweet zu @jcolt1111 über eine nicht näher spezifizierte Rally und US-Nasdaq-Listing ohne konkrete Ticker-Nennung. · <a href="https://twitter.com/aleabitoreddit/status/2046913580172460411" target="_blank">↗</a></li><li><strong>@Moody</strong> <code>NYNOMIC</code> — Autor klarstellt defensive Positionierung zu Nynomic-Aktie in Twitter-Diskussion – keine neuen Fundamentaldaten oder Katalysatoren. · <a href="https://twitter.com/MoodyWriter13/status/2047004922680586406" target="_blank">↗</a></li><li><strong>@Moody</strong> <code>—</code> — Retrospektive Bewertungsmetrik eines nicht identifizierten Unternehmens bei €8.20 – ohne aktuellen Kontext oder Ticker für Portfolio irrelevant. · <a href="https://twitter.com/MoodyWriter13/status/2046954466021155238" target="_blank">↗</a></li><li><strong>@Moody</strong> <code>—</code> — Autor besitzt keine der zuvor empfohlenen Aktien mehr und kann keine Kursprognosen abgeben. · <a href="https://twitter.com/MoodyWriter13/status/2046810750778257533" target="_blank">↗</a></li><li><strong>@Serenity</strong> <code>—</code> — Einwortige Bestätigung ohne Kontext oder substantielle Information für Portfolio-Analyse. · <a href="https://twitter.com/aleabitoreddit/status/2047035014488158442" target="_blank">↗</a></li><li><strong>@Serenity</strong> <code>—</code> — Spekulativer Kommentar über mögliche UBS-Mitarbeiter ohne Investment-Relevanz oder Kontext für Portfolio. · <a href="https://twitter.com/aleabitoreddit/status/2046911317307719919" target="_blank">↗</a></li><li><strong>@Serenity</strong> <code>—</code> — Chinesischer Tweet mit Link, keine erkennbare Investment-Relevanz für Tims Portfolio. · <a href="https://twitter.com/aleabitoreddit/status/2046897270780813577" target="_blank">↗</a></li><li><strong>@Yiannis</strong> <code>—</code> — Informeller Social-Media-Austausch ohne investmentrelevanten Inhalt oder Bezug zu getrackten Positionen. · <a href="https://twitter.com/yianisz/status/2047006073622610170" target="_blank">↗</a></li><li><strong>@Moody</strong> <code>—</code> — Autor bewirbt kostenlosen Substack-Newsletter. Keine Investment-relevanten Informationen für Tims Portfolio. · <a href="https://twitter.com/MoodyWriter13/status/2046809386383761487" target="_blank">↗</a></li></ul><h3>sector_rotation <span class="count">(2)</span></h3><ul class="low-list"><li><strong>@Yiannis</strong> <code>—</code> — AMD profitiert von CPU+GPU-Story, aber Intel-Erholung hebt aktuell die Sektor-Stimmung stärker als AMDs Fundamentals. · <a href="https://twitter.com/yianisz/status/2046954173938188346" target="_blank">↗</a></li><li><strong>@Serenity</strong> <code>—</code> — Tweet argumentiert patriotisch für US-Investments in nationale Sicherheit und Lieferketten ($AMSC, $NVTS), kritisiert historisches Shorting heimischer Sektoren. · <a href="https://twitter.com/aleabitoreddit/status/2047086440757309492" target="_blank">↗</a></li></ul></div>
+    </details>
+</section>
+    </div>
+    <div id="portfolio-tab" class="tab-content">
+        <section class="pf-hero">
+    <h1>💼 Portfolio Übersicht</h1>
+    <div class="pf-hero-stats">
+        <div class="pf-stat">
+            <div class="pf-stat-label">Positionen</div>
+            <div class="pf-stat-value">32</div>
+        </div>
+        <div class="pf-stat">
+            <div class="pf-stat-label">Einstand</div>
+            <div class="pf-stat-value">€736,377</div>
+        </div>
+        <div class="pf-stat">
+            <div class="pf-stat-label">Aktueller Wert</div>
+            <div class="pf-stat-value">€1,075,791</div>
+        </div>
+        <div class="pf-stat">
+            <div class="pf-stat-label">P&amp;L</div>
+            <div class="pf-stat-value pnl-positive">+46.1%</div>
+            <div class="pf-stat-sub">+€339,414</div>
+        </div>
+    </div>
+</section>
+<section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Ai Photonics Optical Supercycle</div>
+        <div class="theme-stats">
+            <span class="theme-count">8 Positionen</span>
+            <span class="theme-value">€313,901</span>
+            <span class="pnl-positive">+66.1%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">SIVE.ST</div>
+            <div class="pf-name">Sivers Semiconductors</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 7/10</span>
+            <span class="pf-portpct">13.1% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €82,191</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €140,692</div>
+        <div class="pnl-positive"><strong>+71.2%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>30.000 SEK</strong>
+    </div>
+    <div class="pf-live-change pnl-negative">
+        <strong>-12.28%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€123,414</strong>
+    </div>
+</div>
+    <div class="pf-these">Serenity&#x27;s persönliche Tierlist #1 Conviction trotz Y=0 (keine Yiannis-Erwähnung). Swedisches Photonics-Unternehmen mit O-Net ELS-Partnership (März 2026). Binärer Katalysator 27.04.2026 (Jabil-Bestätigung / Annual Report) definiert Trajectory. Grösste Einzelposition im Depot (18,3%).</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Serenity persönliche Tierlist #1 Conviction</li><li>O-Net ELS Partnership (März 2026)</li><li>Potentielle Jabil-Partnership (unbestätigt, Monitoring-Ziel 27.04.)</li><li>Kleine MktCap (~€300M) = hohes Re-Rating-Potenzial bei positivem Announcement</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Y=0 strukturell: Yiannis hat nie Cashtag zu SIVE gesetzt — potentielle Thesis-Schwäche</li><li>FY25 Revenue SEK 304M mit laufenden Verlusten</li><li>$17M Debt-Load</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>27.04.2026 Jabil-Announcement / Annual Report (BINÄR)</li><li>Q2/Q3 2026 Revenue-Trajectory O-Net ELS Contribution</li><li>Yiannis-Coverage-Start als Scored-Katalysator</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">IQE.L</div>
+            <div class="pf-name">IQE plc</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #16a34a;">Conviction 8/10</span>
+            <span class="pf-portpct">6.6% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €39,581</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €70,722</div>
+        <div class="pnl-positive"><strong>+78.7%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>0.626 GBP</strong>
+    </div>
+    <div class="pf-live-change pnl-negative">
+        <strong>-0.63%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€70,273</strong>
+    </div>
+</div>
+    <div class="pf-these">Weltgrösster unabhängiger Epiwafer-Lieferant. MktCap ≈ Revenue (£200–250M vs. £97M FY25-Revenue), weitgehend unsichtbar für US-Kapital. Strategic Review mit multiplen non-binding Offers in Evaluation = binärer M&amp;A-Katalysator. Grösste asymmetrische Chance im Upstream-Photonics-Cluster.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Serenity Top 10 #9 (ALMU grouped), Score revidiert 2 → 9 nach dediziertem Scan (10+ Tweets mit 5–10x target)</li><li>Strategic Review: mehrere non-binding Offers im Markt</li><li>FY25 Revenue £97M am oberen Ende der Guidance</li><li>EBITDA positiv £2M (Upper-End erreicht)</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Strategic Review endet ohne Deal → Restrukturierungs-Szenario</li><li>Kein Yiannis-Deep-Dive (Y=5)</li><li>Kleinere Liquidität, UK-Listing trennt von US-Kapital</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Strategic Review Abschluss (offen, 2026) — binäres M&amp;A-Event</li><li>FY26 Guidance-Update</li><li>Non-Binding Offers → Binding Bids Transition</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">AAOI</div>
+            <div class="pf-name">Applied Optoelectronics</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #16a34a;">Conviction 9/10</span>
+            <span class="pf-portpct">3.0% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €14,887</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €32,668</div>
+        <div class="pnl-positive"><strong>+119.4%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>149.420 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-negative">
+        <strong>-3.62%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€31,486</strong>
+    </div>
+</div>
+    <div class="pf-these">AAOI ist das einzige Triple-Overlap-Investment des Portfolios (Serenity + Yiannis + Sikand). Hyperwachstum durch LPO-Transceiver, die den Copper-Wall-Problem in AI-Clustern lösen. Eigene Laser-Fabs = vertikale Integration als Differenzierung. Sikand-These: $500M (2025) → $5B Run-Rate 2027 = extreme Asymmetrie bei ursprünglicher $8B MktCap.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Triple-Analyst-Confirmation (Serenity Top 10 #2, Yiannis Top Pick, Sikand Trade 1)</li><li>$200M 1.6T Order + $53M 800G Follow-on (April 2026)</li><li>Direkte Hyperscaler-Exposure: Amazon, Microsoft</li><li>Vertikale Integration via eigene Laser-Fabs vs. Wettbewerber mit bought-in Lasern</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Aktueller Kurs ~$157 (April 2026) = +100% seit Einstand €78,72</li><li>~+75% über Analyst-Consensus-PT $90 → gegen den Markt-Konsens</li><li>Aktives ATM-Programm $500M total, bereits ausgezogen → Dilution-Acceleration möglich</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Q1 Earnings 30.04.2026 (oder 14.05. — Memory-Quelle vs. externe Quelle)</li><li>OFC 2026 Design-Win-Announcements</li><li>1.6T-Production-Ramp Status-Updates</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">AIXA.DE</div>
+            <div class="pf-name">AIXTRON SE</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #94a3b8;">Conviction 5/10</span>
+            <span class="pf-portpct">2.3% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €14,813</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €24,378</div>
+        <div class="pnl-positive"><strong>+64.6%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>46.620 EUR</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+3.07%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€25,127</strong>
+    </div>
+</div>
+    <div class="pf-these">MOCVD-Duopol (mit Veeco). Jede Epi-Kapazitätsexpansion = mehr Aixtron-Anlagen, höhere Margen als Waferhersteller. Deutsches Listing schafft EU-Kapital-Zugang. Serenity philosophisch &quot;not a fan of equipment sellers&quot; = Position ist framework-only ohne Serenity-Conviction.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>MOCVD-Duopol strukturell (Aixtron vs. Veeco)</li><li>Indirekter Bottleneck-Beneficiary: jede InP/GaAs-Kapazitätserweiterung braucht MOCVD</li><li>Höhere Margen als Waferhersteller selbst (Equipment-Margin-Profile)</li><li>EU-Defense/Photonics-Kapazitätsausbau via Trump $1,5T Defense Budget Transmission</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Serenity explizit &quot;nicht persönlich long&quot; — &quot;not a fan of equipment sellers&quot;</li><li>Equipment-Sellers zyklisch, Book-to-Bill volatil</li><li>China-Exposure-Regulierung / Exportkontrollen-Risiko</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quartalsweise Book-to-Bill als führender Indikator Epi-Kapazitätsausbau</li><li>Photonics-Equipment-Revenue-Aufgliederung</li><li>Defense-Segment-Auftragseingänge</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">SOI.PA</div>
+            <div class="pf-name">Soitec SA</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #16a34a;">Conviction 8/10</span>
+            <span class="pf-portpct">1.3% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €7,571</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €13,990</div>
+        <div class="pnl-positive"><strong>+84.8%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>109.700 EUR</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+8.24%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€15,143</strong>
+    </div>
+</div>
+    <div class="pf-these">Einziger SOI-Wafer-Produzent mit Photonics-SOI-Kapazität für CPO. Sikand Trade 2: LPO braucht 50mm² Photonics-SOI pro Switch, CPO braucht 200mm² = 4x Soitec-Content bei CPO-Transition. NVIDIA Spectrum-X/Quantum-X Launch 18.03.2026 verkürzt 2028–30 Timeline auf 2027. Aktuell 52w-High €85.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Sikand Trade 2 explizit: CPO-Transition = Soitec ~4x Revenue-Expansion</li><li>NVIDIA CPO-Launch 18.03.2026: Spectrum-X und Quantum-X integriert in next-gen Server</li><li>Timeline verkürzt 2028–30 → 2027</li><li>Morgan Stanley PT €70 bereits überholt bei €85</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>RF-SOI Inventory-Korrektur belastet FY25/FY26 Revenue</li><li>52w-High bereits erreicht — Einstieg eng</li><li>Q4 FY26 Earnings (27.05.) müssen Photonics-SOI-Revenue-Aufgliederung liefern</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>27.05.2026 Q4 FY26 Earnings — Photonics-SOI Revenue-Aufgliederung</li><li>Q1 FY27 Guidance</li><li>NVIDIA CPO-Ramp-Progression</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">TSEM</div>
+            <div class="pf-name">Tower Semiconductor</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #16a34a;">Conviction 8/10</span>
+            <span class="pf-portpct">1.0% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €10,365</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €11,073</div>
+        <div class="pnl-positive"><strong>+6.8%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>206.100 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-negative">
+        <strong>-5.18%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€10,500</strong>
+    </div>
+</div>
+    <div class="pf-these">SiPho-Foundry mit InP/GaAs/SiPh-Kapazität, Yiannis &quot;quiet compounder&quot;. Nach NVIDIA CPO-Launch (18.03.2026) und COHR 400 Gbps/lane Demo ist Tower im Zentrum des Photonics-Supercycles positioniert. 70%+ SiPh-Kapazität reserved bis 2028.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Yiannis Top Pick: &quot;quiet compounder&quot;</li><li>Q4 Revenue $440M Rekord</li><li>70%+ SiPh-Kapazität reserved bis 2028</li><li>Partnerships: COHR 400 Gbps/lane Demo, Oriole, Salience, Xanadu, Lightwave Logic</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Kurs $215 → Mainstream-Diskussion erreicht (&quot;mainstream just discovered photonics&quot; — Yiannis 08.04.)</li><li>Foundry-Zyklik historisch volatil</li><li>Intel-Kernübernahme-historie belastet psychologische Zyklusposition</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quartalsweise Earnings mit SiPh-Revenue-Aufgliederung</li><li>400 Gbps/lane Produktions-Ramp COHR-Partnership</li><li>Lightwave Logic Polymer-Modulator-Integration PH18</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">MTSI</div>
+            <div class="pf-name">MACOM Technology</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 7/10</span>
+            <span class="pf-portpct">1.0% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €9,893</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €10,517</div>
+        <div class="pnl-positive"><strong>+6.3%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>277.000 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-negative">
+        <strong>-3.15%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€10,186</strong>
+    </div>
+</div>
+    <div class="pf-these">CW-Laser-Qualifizierung für 1.6T aktiv, Datacenter-Guidance +30–35%. Günstiger bewertet als AI-Darlings. Re-Rating-Kandidat durch Layer-3-Eintritt (CW-Laser) in Massenproduktion. Serenity CW-Laser-Tierlist #4.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Serenity CW-Laser-Tierlist #4 (rehabilitierte Position: Score 2,0 → 7,0)</li><li>Datacenter-Guidance +30–35%</li><li>Günstiger als AI-Darlings bei ähnlichem strukturellem Treiber</li><li>CW-Laser-Qualifizierung 1.6T aktiv</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Score 7,0 basiert nur auf Tierlist-Platzierung, dedizierter Scan offen</li><li>Yiannis-Confirmation schwach (Y=2)</li><li>Defense/A&amp;I-Segment-Zyklik kann Datacenter-Wachstum verwässern</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Q1–Q2 2026 Design-Win-Ankündigungen (CW-Laser 1.6T)</li><li>Quartalsweise Earnings mit Datacenter-Revenue-Aufgliederung</li><li>Serenity CW-Laser-Tierlist-Refresh</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">ALRIB.PA</div>
+            <div class="pf-name">Riber SA</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #94a3b8;">Conviction 5/10</span>
+            <span class="pf-portpct">0.9% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €9,684</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €9,861</div>
+        <div class="pnl-positive"><strong>+1.8%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>13.000 EUR</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+1.25%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€9,984</strong>
+    </div>
+</div>
+    <div class="pf-these">MBE-Equipment-Nische (Molecular Beam Epitaxy) — komplementär zu MOCVD (Aixtron). Kleinstes Unternehmen der Epi-Equipment-Chain, aber Pure-Play-Exposure auf die strukturell wachsende III-V-Epitaxie-Nachfrage.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>MBE-Equipment-Nische ohne direkte Konkurrenz at scale</li><li>III-V-Epitaxie für Photonics / Quantum / Defense</li><li>Kleine Marktkapitalisierung (~€50M) = hohes Re-Rating-Potenzial bei Orders</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Sehr kleines Unternehmen (~€50M MktCap) → Liquiditätsrisiko</li><li>Order-Lumpiness extrem (quartalsweise Volatilität)</li><li>Kein grosser Katalysator seit Q1 2026 (Monitoring-Mode)</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Order-Announcements (quartalsweise)</li><li>Defense-Programme Revenue-Aufgliederung</li><li>Quantum-Computing-Customer-Wins</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Ai Semiconductors Upstream</div>
+        <div class="theme-stats">
+            <span class="theme-count">6 Positionen</span>
+            <span class="theme-value">€221,315</span>
+            <span class="pnl-positive">+35.2%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">TSM</div>
+            <div class="pf-name">Taiwan Semiconductor</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #16a34a;">Conviction 9/10</span>
+            <span class="pf-portpct">7.2% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €64,238</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €77,863</div>
+        <div class="pnl-positive"><strong>+21.2%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>387.440 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+4.87%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€81,654</strong>
+    </div>
+</div>
+    <div class="pf-these">Einziger Anbieter für &lt;3nm-Chips und CoWoS-Kapazität at scale. Strukturelles Monopol im Advanced-Node-Segment. 5–8% p.a. Preiserhöhungen ohne Nachfrageeinbruch. Taiwan-Geopolitik als einziger struktureller Gegenposten.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Einziger Leading-Edge-Produzent bei &lt;3nm-Kapazität</li><li>CoWoS-Kapazität 2023 15k → 2025E 60k+ wafers/mo = strukturelles Nadelöhr</li><li>Lead Times 6–12 Monate normalisiert (nach Ramp-Welle)</li><li>Preissetzungsmacht 5–8% p.a. ohne Volumeneinbruch</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Taiwan-Konflikt-Eskalation = fundamentales Lieferketten-Risiko</li><li>CoWoS-Kapazität kommt 2027 in Balance → Pricing Power könnte schwächen</li><li>US-CHIPS-Act Reshoring-Dynamiken langfristig</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Monthly Revenue Releases</li><li>Quarterly Earnings (nächstes Q1 2026)</li><li>CoWoS-Kapazitäts-Updates</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">005930.KS</div>
+            <div class="pf-name">Samsung Electronics</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 6/10</span>
+            <span class="pf-portpct">3.0% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €16,936</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €31,737</div>
+        <div class="pnl-positive"><strong>+87.4%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>224000.000 KRW</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+2.52%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€32,536</strong>
+    </div>
+</div>
+    <div class="pf-these">HBM-Aufholjagd mit Qualifizierungs-Fortschritten bei NVIDIA (grösstenteils behoben bis 2024). Marktanteil HBM ~30–35%. Wenn Samsung HBM3e/HBM4 Qualifizierung bei NVIDIA gewinnt → Re-Rating-Potenzial; wenn nicht, strukturelle Zweitposition.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>HBM-Marktanteil 30–35% mit Wachstum</li><li>HBM3e-Qualifizierungsprobleme bei NVIDIA bis 2024 grösstenteils behoben</li><li>Breites Portfolio (NAND, Foundry, Display) = Diversifikation</li><li>Foundry-Segment als TSMC-Alternative für non-Leading-Edge</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>SK Hynix-Dominanz bei HBM3e</li><li>NAND-Preisverfall 2024/25 belastet</li><li>Foundry-Verluste bei Leading-Edge</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quarterly Earnings</li><li>NVIDIA HBM-Design-Win-Announcements</li><li>Foundry-Segment-Updates</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">000660.KS</div>
+            <div class="pf-name">SK Hynix</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #16a34a;">Conviction 8/10</span>
+            <span class="pf-portpct">2.9% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €17,229</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €31,152</div>
+        <div class="pnl-positive"><strong>+80.8%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>1217000.000 KRW</strong>
+    </div>
+    <div class="pf-live-change pnl-negative">
+        <strong>-0.65%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€30,949</strong>
+    </div>
+</div>
+    <div class="pf-these">Marktführer HBM (~50% Anteil). Exklusiver HBM3e-Lieferant für NVIDIA H200 = stärkste Pricing Power der Memory-Branche. H100 = 80GB HBM3, B200 = 192GB HBM3e → HBM-Intensität pro Chip steigt strukturell.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>~50% HBM-Marktanteil global</li><li>Exklusiver NVIDIA HBM3e-Lieferant für H200</li><li>Stärkste Pricing Power im Memory-Markt</li><li>HBM-Intensität pro GPU wächst (80GB → 192GB → HBM4)</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Samsung HBM3e-Qualifizierung bei NVIDIA fortschreitend → Exklusivität gefährdet</li><li>Korea-EM-Zyklik / Won-Sensitivität</li><li>Memory-Preisverfall NAND belastet Konzernmargen</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quarterly Earnings</li><li>NVIDIA Blackwell Ramp-Progress</li><li>HBM4-Roadmap-Updates</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">ASML</div>
+            <div class="pf-name">ASML Holding NV</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 7/10</span>
+            <span class="pf-portpct">2.8% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €15,189</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €30,182</div>
+        <div class="pnl-positive"><strong>+98.7%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>1443.660 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-negative">
+        <strong>-1.52%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€29,723</strong>
+    </div>
+</div>
+    <div class="pf-these">EUV-Monopol mit High-NA-Transition als nächster Wachstumsimpuls. Unverzichtbar für TSMC/Samsung/Intel Leading-Edge-Nodes. China-Exposure-Restriktionen als strukturelles Risiko. Upstream-Pick-Shovel-Play auf gesamten Semiconductor-Zyklus.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>EUV-Monopol (konkurrenzlos)</li><li>High-NA-Ramp bei TSMC/Samsung/Intel startet</li><li>Leading-Edge-Nodes-Demand strukturell durch AI</li><li>Book-to-Bill &gt;1 durch CoWoS-Kapazitätsausbau</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>China-Exposure-Restriktionen (BIS Entity List)</li><li>EUV-Bookings-Volatilität zwischen Quartalen</li><li>Makro-Semiconductor-Zyklik</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quarterly Earnings</li><li>High-NA-Shipments zu TSMC</li><li>China-Export-Licensing-Updates</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">MRVL</div>
+            <div class="pf-name">Marvell Technology</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 7/10</span>
+            <span class="pf-portpct">2.4% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €25,074</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €25,396</div>
+        <div class="pnl-positive"><strong>+1.3%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>157.320 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+3.14%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€26,193</strong>
+    </div>
+</div>
+    <div class="pf-these">DSPs für 400G/800G-Transceiver + Custom AI ASIC Design-Partner (Amazon Trainium, Google TPU). Serenity Top 10 #6 &quot;slept on&quot;. Positioniert in Phase 2/3 des Rotations-Cycles; ASIC-Wachstum +44% 2026E vs. +16% GPU-Wachstum (Yiannis).</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Serenity Top 10 #6: DSP/SiPh &quot;slept on&quot;</li><li>Yiannis: Broadcom/Marvell ASIC-Wachstum +44% 2026E vs. +16% GPU — struktureller Rotations-Play</li><li>Amazon Trainium-Partnership etabliert</li><li>DSP-Position in 400G/800G-Transceiver-Chain</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>ASIC-Partnerschaft bei Amazon/Google = Konzentrationsrisiko</li><li>AVGO-Dominanz im Custom-ASIC-Segment</li><li>Cyclicalität im Storage/Networking-Kernsegment</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quartalsweise Earnings mit ASIC-Revenue-Progression</li><li>Neue Custom-Silicon-Customer-Wins</li><li>Google-TPU Roadmap-Updates</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">GFS</div>
+            <div class="pf-name">GlobalFoundries</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #94a3b8;">Conviction 5/10</span>
+            <span class="pf-portpct">2.3% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €25,005</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €24,985</div>
+        <div class="pnl-negative"><strong>-0.1%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>60.390 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+1.24%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€25,295</strong>
+    </div>
+</div>
+    <div class="pf-these">Trailing-Edge-Foundry (mature nodes 12nm+) mit Automotive/IoT/RF-Fokus. Nicht im AI-Leading-Edge-Rennen, aber strukturell relevant für Edge-AI, Automotive-Compute, Industrial-IoT. Kapazitäts-Ausnutzung als Haupt-KPI.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Mature-Nodes-Spezialisierung ohne TSMC-Konkurrenz</li><li>Automotive/IoT/RF als strukturelle Wachstumsmärkte</li><li>US-Produktionsstandorte → CHIPS-Act-Profiteur</li><li>Defense/Aerospace-Exposure</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Trailing-Edge-Overcapacity (SMIC, UMC, Vanguard)</li><li>Utilization-Sensitivität → Margin-Volatilität</li><li>Automotive-Segment-Zyklik</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quarterly Earnings Utilization-Rate</li><li>Automotive-Recovery-Signale</li><li>CHIPS-Act-Grants-Disbursement</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Ai Datacenter Neoclouds</div>
+        <div class="theme-stats">
+            <span class="theme-count">3 Positionen</span>
+            <span class="theme-value">€180,045</span>
+            <span class="pnl-positive">+37.7%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">NBIS</div>
+            <div class="pf-name">Nebius Group NV</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 7/10</span>
+            <span class="pf-portpct">7.8% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €64,212</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €83,781</div>
+        <div class="pnl-positive"><strong>+30.5%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>156.140 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-negative">
+        <strong>-1.71%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€82,352</strong>
+    </div>
+</div>
+    <div class="pf-these">Einzige skalierbare EU-AI-Cloud (DSGVO / AI Act). Meta $27B + MSFT $19,4B + NVDA $2B = $46B Contract Stack bindet Pipeline bis ~2030. ARR-Target Ende 2026: $7–9B. Von ursprünglich &quot;strukturell unterbewertet&quot; (MktCap $5–8B) zu $41,6B MktCap und 414x P/E gelaufen — These intakt, aber Valuation nicht mehr asymmetrisch.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>$46B Contract Stack (Meta + MSFT + NVDA)</li><li>ARR-Target Ende 2026: $7–9B (Serenity 10x Revenue Ramp Q4 2026)</li><li>Goldman PT $205</li><li>Einzige skalierte EU-AI-Cloud mit Full-Stack (Nebius AI Studio, Kubernetes, S3)</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>414x P/E (trailing) — ursprüngliche &quot;unterbewertet&quot;-Story aufgezehrt</li><li>$16–20 Mrd. CapEx 2026 bei $3–3,4 Mrd. Revenue — ~40% Finanzierung unsecured</li><li>ATM-Programm autorisiert (Dilution-Risk)</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Q1 2026 Earnings — ARR-Trajectory</li><li>AI21 Labs Acquisition Announcement / Close</li><li>Q2/Q3 2026 ARR-Ramp-Bestätigung</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">IREN</div>
+            <div class="pf-name">IREN Limited</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 6/10</span>
+            <span class="pf-portpct">5.1% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €43,001</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €54,482</div>
+        <div class="pnl-positive"><strong>+26.7%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>48.390 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+4.47%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€56,916</strong>
+    </div>
+</div>
+    <div class="pf-these">Reinster Energy-first-Play: Sustainable Datacenter an Stranded-Renewables-Standorten (Wasserkraft Kanada, Wind Australien). $0.02–0.035/kWh Energiekosten = top-decile global. MSFT Compute-Deal announced. NVDA-Investment + 7-day green streak. Aber: Serenity-Warnung zu $6B ATM-Dilution ist das zentrale Capital-Structure-Gate-Problem.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>~100% erneuerbare Energie</li><li>$0.02–0.035/kWh Durchschnittskosten = guenstigste Energie-Portfolios global</li><li>5+ Standorte, ~500 MW gesicherte Kapazität</li><li>MSFT Compute-Deal announced</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Serenity-Warnung: $6B ATM-Dilution — zentrales Capital-Structure-Gate-Problem</li><li>Kleines Unternehmen (~$2–3B MktCap) mit Finanzierungsrisiko</li><li>Bitcoin-Segment verzerrt AI-Story</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>MSFT Compute-Deal Detail-Announcement</li><li>ATM-Programm-Transparenz</li><li>Quartalsweise HPC-Revenue-Aufgliederung (vs. BTC-Mining)</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">HUT</div>
+            <div class="pf-name">Hut 8 Corp</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #94a3b8;">Conviction 5/10</span>
+            <span class="pf-portpct">3.9% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €23,522</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €41,782</div>
+        <div class="pnl-positive"><strong>+77.6%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>80.740 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+3.51%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€43,250</strong>
+    </div>
+</div>
+    <div class="pf-these">Prototypischer Bitcoin-Mining-to-HPC-Pivot: 17+ Standorte in Nordamerika, ~825 MW gesicherte Kapazität, $0.03–0.04/kWh Durchschnittskosten. Kernkompetenz: Energie-Infrastruktur-Management. Bitcoin-Noise als Pricing-Verzerrung — struktureller Wert in Energie-Assets.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>~825 MW gesicherte Kapazität</li><li>$0.03–0.04/kWh Durchschnittskosten</li><li>Langfristige Strom-PPAs</li><li>Günstigste Bewertung auf EV/MW-Basis unter US-Peers</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Bitcoin-Sentiment-Overlay — Aktie korreliert stärker mit BTC als AI-Fundamentals</li><li>HPC-Transition-Risiko</li><li>GPU-Auslastungsrisiko bei Eigeninvestments</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quartalsweise HPC-Revenue-Aufgliederung</li><li>Neue Hyperscaler-Hosting-Contracts</li><li>GPU-Cloud Utilization-Rate</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Batteries Storage</div>
+        <div class="theme-stats">
+            <span class="theme-count">1 Positionen</span>
+            <span class="theme-value">€77,136</span>
+            <span class="pnl-positive">+79.7%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">300750.SZ</div>
+            <div class="pf-name">Contemporary Amperex (CATL)</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 7/10</span>
+            <span class="pf-portpct">7.2% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €42,921</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €77,136</div>
+        <div class="pnl-positive"><strong>+79.7%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>437.080 CNY</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+0.04%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€77,170</strong>
+    </div>
+</div>
+    <div class="pf-these">CATL ist der globale Marktführer für Li-Ion-Batterien mit 42% EV-Marktanteil (SNE Research Feb 2026) und ~37% Energy Storage-Marktanteil. Doppelte Wachstumsstory: trotz China EV-Absatzschwäche (-20% YoY nach Subvention-Reduktion) kompensiert Energy Storage Systems (ESS) das Volumen — neuer Wachstumstreiber durch AI-Datacenter-Backup und Grid-Stabilisierung. Q1 2026: Revenue +52% YoY, Net Profit +49% YoY. Strategische Pivot: $4,4B Investition in Mining für Lithium-Vertikalintegration, Stellantis-JV Spanien (€4,1B, 50 GWh, Produktion 2026), Hongkong-Secondary-Listing für Internationale Expansion.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>42% globaler EV-Battery-Marktanteil, strukturelle Dominanz</li><li>Q1 2026: Revenue +52% YoY, Net Profit ¥20,74B (+49% YoY, +48,5% QoQ)</li><li>ESS als neuer Wachstumstreiber (&gt;100 GW global additions erwartet 2025+)</li><li>Stellantis-JV Spanien €4,1B (50 GWh 2026 Production Start)</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>US Export-Restriktionen: DoD &quot;Chinese military companies&quot; list, Texas-Ban</li><li>China EV-Markt schrumpft (-20% YoY, Subventions-Rollback)</li><li>Margin-Druck durch LFP-Preisverfall</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Q2 2026 Earnings (Mai) — ESS-Revenue-Aufgliederung</li><li>Stellantis Spanien Production-Start 2026</li><li>Marshall Michigan Ford-JV Commercial-Ramp</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Ai Test Burnin</div>
+        <div class="theme-stats">
+            <span class="theme-count">1 Positionen</span>
+            <span class="theme-value">€56,578</span>
+            <span class="pnl-positive">+132.5%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">AEHR</div>
+            <div class="pf-name">Aehr Test Systems</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #16a34a;">Conviction 10/10</span>
+            <span class="pf-portpct">5.3% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €24,332</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €56,578</div>
+        <div class="pnl-positive"><strong>+132.5%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>97.360 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+1.06%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€57,177</strong>
+    </div>
+</div>
+    <div class="pf-these">&quot;Hidden Gatekeeper&quot; (Yiannis) der SiPh/AI-Chip-Produktion via wafer-level Burn-in. Erste kommerzielle Technologie für Silicon-Photonics-Burn-in. Yiannis vergleicht Setup explizit mit early AAOI. Rekord-Orders $41M (16.04.2026) und $92M H2-Bookings übertreffen $60–80M Guidance.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Score 9,8 (S=9, Y=9 + Qualitätsmodifier)</li><li>Rekord $41M Order (16.04.2026)</li><li>H2-Bookings $92M übertreffen Guidance $60–80M</li><li>FY26 Revenue High-End $45–50M</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Kundenkonzentration SiPh-Customers</li><li>Kleines Unternehmen (~$2,5B MktCap) mit Finanzierungsrisiko</li><li>Customer-Timing-Risk bei grossen Order-Batches</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Q4 FY26 Earnings (Juli 2026 ca.)</li><li>Orders-Ankündigungen H2 2026</li><li>FY27 Guidance-Update</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Ai Electrical Infrastructure</div>
+        <div class="theme-stats">
+            <span class="theme-count">3 Positionen</span>
+            <span class="theme-value">€55,652</span>
+            <span class="pnl-positive">+19.6%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">PRY.MI</div>
+            <div class="pf-name">Prysmian SpA</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 6/10</span>
+            <span class="pf-portpct">2.9% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €22,272</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €30,804</div>
+        <div class="pnl-positive"><strong>+38.3%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>121.150 EUR</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+1.08%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€31,138</strong>
+    </div>
+</div>
+    <div class="pf-these">Globaler Marktführer Subsea-Kabel und Energie-Infrastruktur-Kabel. Exposure auf Grid-Ausbau-Zyklus Europa + US + Offshore-Wind. Indirektes AI-Infrastruktur-Play via Grid-CapEx-Transmission.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Subsea-Kabel-Duopol global</li><li>EU Grid-Investitionen €584 Mrd. bis 2030</li><li>Offshore-Wind-Anschlüsse strukturell wachsend</li><li>US-Acquisitions (Encore Wire) diversifiziert</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Subsea-Kabel-Backlog-Risiko bei Offshore-Wind-Projekt-Stornierungen</li><li>Kupfer-Preis-Spike ohne Pass-Through</li><li>EUR-Stärke belastet US-Revenue</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quartalsweise Order-Backlog</li><li>Offshore-Wind-Auktions-Ergebnisse</li><li>Kupfer-Preis-Entwicklung</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">ENR.DE</div>
+            <div class="pf-name">Siemens Energy</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #16a34a;">Conviction 8/10</span>
+            <span class="pf-portpct">1.4% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €14,707</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €14,914</div>
+        <div class="pnl-positive"><strong>+1.4%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>178.420 EUR</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+6.88%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€15,940</strong>
+    </div>
+</div>
+    <div class="pf-these">Re-Rating bereits gelaufen (€55–60 → €169 seit Memo v1). Backlog €146 Mrd. = 7× FY26-Umsatz. Gas Turbines sold out bis FY29. Charlotte NC als erster US-LPT-Standort. Gamesa-Turnaround on track: Q1 FY26 Verlust €46M (von €1,36B). Super-Bull-Case (€250) nur bei Gamesa Break-even FY26 + PE-Multiple-Expansion auf GEV-Niveau.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Q1 FY26 Net Profit €746–790M — Verdreifachung YoY</li><li>Backlog €146 Mrd. bestätigt</li><li>Grid Technology +50% YoY</li><li>Gas Turbines sold out bis FY2028, FY29 füllt sich</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Soros-Reflexivitäts-Trade überwiegend gelaufen</li><li>Konsens-PT €166 praktisch AT Kurs (€169)</li><li>Gamesa-Risiko: 3–5% Marginziel bis FY2028 nicht sicher</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Mai 2026 Q2 FY26 Earnings — Gamesa Break-even-Progress</li><li>Charlotte NC Factory Production-Preparation News H2 2026</li><li>€2 Mrd. Buyback-Fortschritt</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">HPS-A.TO</div>
+            <div class="pf-name">Hammond Power Solutions</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #94a3b8;">Conviction 5/10</span>
+            <span class="pf-portpct">0.9% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €9,564</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €9,934</div>
+        <div class="pnl-positive"><strong>+3.9%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>268.590 CAD</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+6.51%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€10,581</strong>
+    </div>
+</div>
+    <div class="pf-these">Serenity-new-trade-idea (07.04.2026): AI Electrical Infrastructure Bottleneck-Fit. Kanadischer Transformer-Hersteller mit Nordamerika-Fokus. Positioniert im gleichen strukturellen Trend wie Hitachi Energy, ENR, ETN — aber kleinere Marktkapitalisierung und spezifischere Kundenbasis.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Serenity neue Idee (April 2026)</li><li>AI Electrical Infrastructure Bottleneck-Fit</li><li>Nordamerika-Transformer-Nachfrage durch US-Grid-Upgrade</li><li>Small-Cap-Positionierung = höheres Re-Rating-Potenzial</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Y=0: Kein Yiannis-Deep-Dive</li><li>Noch keine zweite Serenity-Conviction-Meldung</li><li>Kanadischer Markt limitiert US-Kapital-Flow</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Serenity Follow-up-Coverage</li><li>Quartalsweise Order-Backlog-Entwicklung</li><li>US-Grid-Upgrade-Programme Transmission</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Energy Ai Hydrogen Fuelcell</div>
+        <div class="theme-stats">
+            <span class="theme-count">1 Positionen</span>
+            <span class="theme-value">€42,895</span>
+            <span class="pnl-positive">+42.9%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">CWR.L</div>
+            <div class="pf-name">Ceres Power Holdings</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 6/10</span>
+            <span class="pf-portpct">4.0% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €30,014</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €42,895</div>
+        <div class="pnl-positive"><strong>+42.9%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>4.810 GBP</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+11.14%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€47,672</strong>
+    </div>
+</div>
+    <div class="pf-these">Asset-light SOFC-Technologie-Lizenz-Modell als indirekte Wette auf AI-Datacenter-Baseload-Power-Problem. Trotz schwerem Bosch-Exit-Schock Feb 2025 hat Ceres in H2 2025 eine erfolgreiche Asia-Pivot exekutiert: Doosan Fuel Cell hat Mass Production in Südkorea gestartet (Juli 2025, 50 MW/Jahr für Datacenter + maritime), Delta Electronics entwickelt Megawatt-SOFC-Systems für AI-Datacenter mit Production-Start Ende 2026, Weichai-Lizenz für China abgeschlossen. Goldman Sachs Upgrade auf Buy. Gross Margin durch Lizenz-Modell &gt;80% ab 2025.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Doosan Mass Production läuft (50 MW/Jahr, erste Sales H2 2025)</li><li>Delta Electronics: Megawatt-SOFC für AI-Datacenter, Production Q4 2026</li><li>Weichai-Lizenz für China (welt-größter Fuel-Cell-Markt)</li><li>Gross Margin &gt;80% durch Lizenz-Modell</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Bosch-Exit Feb 2025 = Verlust von 17,44% Shareholder + europäischer Industrie-Partner</li><li>H1 2025 Revenue -26% YoY = finanzielle Volatilität</li><li>Operating losses bleiben signifikant</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Delta Electronics AI-Datacenter-SOFC-Launch Ende 2026</li><li>Doosan erste kommerzielle Sales (bestätigt für H2 2025)</li><li>Q2 2026 Interim Report (Budget-Transformation-Update)</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Ai Ems Contract Manufacturing</div>
+        <div class="theme-stats">
+            <span class="theme-count">1 Positionen</span>
+            <span class="theme-value">€36,158</span>
+            <span class="pnl-positive">+14.8%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">CLS</div>
+            <div class="pf-name">Celestica Inc</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #16a34a;">Conviction 8/10</span>
+            <span class="pf-portpct">3.4% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €31,502</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €36,158</div>
+        <div class="pnl-positive"><strong>+14.8%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>401.740 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-negative">
+        <strong>-1.05%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€35,779</strong>
+    </div>
+</div>
+    <div class="pf-these">Celestica hat sich von klassischem EMS zum Hyperscaler-ODM transformiert und profitiert massiv vom AI-Datacenter-Bauboom. CCS-Segment = 78% Revenue in Q4 2025 mit +44% YoY-Wachstum. Kritischer Übergang von 800G zu 1.6T-Netzwerk-Switches liefert deutlich höhere Margen. Management hat 2026 Revenue auf $17B + EPS $8,75 guided (+37% YoY Revenue, +45% EPS). 1.6T Design-Win mit drittem Hyperscaler im Q1 2026 etablierte Position als preferred partner für next-gen Netzwerk-Hardware.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>2026 Revenue-Guidance $17B / EPS $8,75 (aggressiv raised)</li><li>CCS-Segment +44% YoY, mittlerweile 78% Revenue</li><li>1.6T Design-Wins bei drei Hyperscalern reduziert Konzentrationsrisiko</li><li>$1B 2026 CapEx für Kapazitätserweiterung (Texas, Thailand, Mexico, Japan, Taiwan)</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Hohe Hyperscaler-Konzentration — einzelner CapEx-Cut trifft überproportional</li><li>$1B CapEx-Plan belastet FCF in Transition-Jahren</li><li>EMS-Wettbewerber (Flex, Jabil) holen auf</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Q1 2026 Earnings (Anfang Mai) — CCS-Momentum-Check</li><li>Q2/Q3 Updates zu 1.6T-Ramp und Rack-Scale Mass Production</li><li>Hyperscaler CapEx-Announcements</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Energy European Grid Utilities</div>
+        <div class="theme-stats">
+            <span class="theme-count">2 Positionen</span>
+            <span class="theme-value">€27,098</span>
+            <span class="pnl-positive">+34.5%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">SSE.L</div>
+            <div class="pf-name">SSE PLC</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #94a3b8;">Conviction 5/10</span>
+            <span class="pf-portpct">1.4% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €10,076</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €15,122</div>
+        <div class="pnl-positive"><strong>+50.1%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>26.235 GBP</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+1.55%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€15,356</strong>
+    </div>
+</div>
+    <div class="pf-these">UK-Netzbetreiber mit Transmission-Fokus (Scottish T-Line). RIIO-T3 Price Control als strukturelles Regulierungsrahmenwerk. Offshore-Wind-Anschlüsse + AI-Datacenter-Grid-Upgrades als Haupttreiber.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Transmission-Grid-Monopol in Schottland</li><li>Offshore-Wind-Anschluss-Investitionen</li><li>RIIO-T3 Price Control bietet regulatorische Visibilität</li><li>Hinkley Point C Stake</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Ofgem RIIO-T3 ungünstiger als erwartet</li><li>Offshore-Wind-Auktions-Preisverfall</li><li>UK-politisches Risiko</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>RIIO-T3 Price Control Final Decision</li><li>Offshore-Wind-Auktions-Ergebnisse</li><li>AR6/AR7 Contract-for-Difference-Auctions</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">EOAN.DE</div>
+            <div class="pf-name">E.ON SE</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #94a3b8;">Conviction 5/10</span>
+            <span class="pf-portpct">1.1% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €10,069</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €11,976</div>
+        <div class="pnl-positive"><strong>+18.9%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>19.105 EUR</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+0.79%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€12,071</strong>
+    </div>
+</div>
+    <div class="pf-these">Deutsche Netz-Betreiberin mit regulierter Grid-CapEx-Story. EU Grid-Investitionen €584 Mrd. bis 2030 transmittieren teilweise auf Netzbetreiber-CapEx-Bases. Defensives Yield-Exposure auf AI-Datacenter-Grid-Upgrade-Zyklus.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Regulierte Grid-CapEx-Story mit stabilen Renditen</li><li>EU €584 Mrd. Grid-Investitionsplan</li><li>Deutsche Datacenter-Cluster wachsen (FFM, Berlin)</li><li>Defensiv-Yield (~4–5% Dividende historisch)</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>BNetzA-WACC-Regulierung limitiert Upside</li><li>Politische Strompreiseingriffe möglich</li><li>EZB-Zinsanhebung → Yield-Compression</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quarterly Earnings</li><li>BNetzA-Regulierungsrahmen-Updates</li><li>Grid-Investitionsplan-Detaillierung</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Ai Cooling Thermal</div>
+        <div class="theme-stats">
+            <span class="theme-count">1 Positionen</span>
+            <span class="theme-value">€18,181</span>
+            <span class="pnl-positive">+22.1%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">VRT</div>
+            <div class="pf-name">Vertiv Holdings</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #16a34a;">Conviction 8/10</span>
+            <span class="pf-portpct">1.7% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €14,889</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €18,181</div>
+        <div class="pnl-positive"><strong>+22.1%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>305.140 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-negative">
+        <strong>-4.37%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€17,386</strong>
+    </div>
+</div>
+    <div class="pf-these">Market-Leader in AI-Cooling / Power-Infrastruktur für Datacenter. Backlog $15 Mrd. (Book-to-Bill 2,9x) — strukturell übernachfragt. Bottleneck: IGBT/SiC-Supply (Infineon, Semikron, Fuji). 800V DC Transition (H2 2026 Launch) öffnet neue Growth-Kurve.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>$15 Mrd. Backlog, Book-to-Bill 2,9x</li><li>Q4 2025 Datacenter-Orders +70%</li><li>CapEx von ~$250M (2025) auf ~$400–540M (2026) — Kapazitätsausbau</li><li>4 neue Americas-Anlagen Q1 2026</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Power Semiconductor (IGBT/SiC) 20–30 Wochen Lead Time — Top 6 Hersteller = 77% Marktanteil (Single-Point-of-Failure)</li><li>Kupfer-Rohstoff-Inputkosten (&gt;$10.000/t, Section 232 50% Tariff seit Aug 2025)</li><li>China-Exposure APAC-Umsatz -9% Q4 2025</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quartalsweise Book-to-Bill als führender Indikator</li><li>H2 2026 800V DC kommerzieller Launch</li><li>Infineon/STMicro/ROHM SiC-Kapazitäts-Updates</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Energy Ai Nuclear Renaissance</div>
+        <div class="theme-stats">
+            <span class="theme-count">2 Positionen</span>
+            <span class="theme-value">€16,432</span>
+            <span class="pnl-negative">-22.7%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">CEG</div>
+            <div class="pf-name">Constellation Energy</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 7/10</span>
+            <span class="pf-portpct">0.9% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €12,785</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €9,782</div>
+        <div class="pnl-negative"><strong>-23.5%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>287.160 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+2.19%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€9,996</strong>
+    </div>
+</div>
+    <div class="pf-these">Grösster US-Nuclear-Operator mit MSFT-PPA (Three Mile Island Reaktivierung). AI-Datacenter-Baseload-Demand als struktureller Treiber. SMR-Pipeline 2027+ als sekundärer Katalysator.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Grösster US-Nuclear-Operator</li><li>MSFT Three Mile Island PPA</li><li>Baseload-Premium vs. variable Renewables</li><li>Nuclear-Renaissance-Narrativ</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>NRC-Genehmigungen für Restart-Timelines</li><li>Naturgas-Preis-Druck auf Wholesale-Pricing</li><li>Regulatorisches State-Level-Risk</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quarterly Earnings</li><li>NRC-Restart-Approval Three Mile Island</li><li>Neue Hyperscaler-PPA-Announcements</li></ul></div>
+    </div>
+</div><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">VST</div>
+            <div class="pf-name">Vistra Corp</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 6/10</span>
+            <span class="pf-portpct">0.6% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €8,461</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €6,650</div>
+        <div class="pnl-negative"><strong>-21.4%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>155.790 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-negative">
+        <strong>-0.52%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€6,616</strong>
+    </div>
+</div>
+    <div class="pf-these">Zweitgrösster US-Nuclear-Operator nach CEG. Retail + Wholesale mit Texas-ERCOT-Exposure. AI-Datacenter-Demand-Treiber plus Hedging-Komplexität. Risiko-Profil breiter als CEG (Retail-Segment, Gas-Exposure).</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Nuclear-Kapazität als AI-Baseload-Fit</li><li>ERCOT-Texas-Exposure = High-Growth-Load-Markt</li><li>Retail-Segment-Diversifikation</li><li>Hedging-Framework bietet Cashflow-Visibilität</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Retail-Segment-Schwäche möglich</li><li>Naturgas-Hedge-Roll-Off-Risiko</li><li>ERCOT-Regulatorisches Risiko</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Quarterly Earnings</li><li>Hyperscaler-PPA-Announcements</li><li>ERCOT-Load-Wachstum-Daten</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Space</div>
+        <div class="theme-stats">
+            <span class="theme-count">1 Positionen</span>
+            <span class="theme-value">€11,792</span>
+            <span class="pnl-positive">+84.8%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">RKLB</div>
+            <div class="pf-name">Rocket Lab</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 6/10</span>
+            <span class="pf-portpct">1.1% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €6,380</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €11,792</div>
+        <div class="pnl-positive"><strong>+84.8%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>90.040 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+1.64%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€11,985</strong>
+    </div>
+</div>
+    <div class="pf-these">Rocket Lab entwickelt sich vom Small-Satellite-Launcher zum Full-Stack-Space-Prime-Contractor. Electron ist die weltweit am häufigsten gestartete kleine Rakete (77 Launches total, 17+ in 2025). Space Systems-Segment (Komponenten + Mynaric-Akquisition für Optical Communications) liefert 2x Gross Profit vs Launch. $816M SDA Missile-Tracking-Satellites-Contract (2025) und $1,85B Gesamt-Backlog schaffen Visibility. ABER: Neutron-Medium-Lift-Rocket wurde mehrfach verschoben — jetzt Q4 2026 nach Tank-Failure Januar 2026. Profitabilität bleibt 2027+ Thema wegen Neutron-R&amp;D. $1B Cash auf Balance Sheet finanziert Development.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>$1,85B Backlog (+$586M Space Systems) schafft Revenue-Visibility</li><li>77 Electron Launches, SpaceX&#x27;s #2 US-Launcher</li><li>SDA Tranche 2 ($816M) + mögliches SDA Tranche 3 (größter Contract in Firmengeschichte)</li><li>Space Systems-Segment wächst dominant (2x Gross Profit vs Launch)</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Neutron 3x verschoben (Ende 2024 → Mid 2025 → Q4 2026) — Credibility-Issue</li><li>Tank-Failure Januar 2026 (third-party contractor) = echter Setback</li><li>Neutron-CapEx $360M+ vs ursprünglich $250-300M budgeted</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Q1 2026 Earnings (Mai 2026) — Electron-Cadence + Neutron-Updates</li><li>Neutron Hot-Fire-Test (Q2-Q3 2026)</li><li>Neutron First Launch Target Q4 2026</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Defence</div>
+        <div class="theme-stats">
+            <span class="theme-count">1 Positionen</span>
+            <span class="theme-value">€11,534</span>
+            <span class="pnl-positive">+77.8%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">ONDS</div>
+            <div class="pf-name">Ondas Holdings</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #16a34a;">Conviction 8/10</span>
+            <span class="pf-portpct">1.1% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €6,488</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €11,534</div>
+        <div class="pnl-positive"><strong>+77.8%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>11.060 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+0.55%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€11,597</strong>
+    </div>
+</div>
+    <div class="pf-these">Ondas hat sich in 6 Monaten von Defense-Startup zu Tier-1 Defense Prime Contractor transformiert. Mistral-Akquisition $175M (März 2026) öffnet Zugang zu &gt;$1B IDIQ-Contract-Pipeline beim Pentagon + $982M Mistral-Multi-Year-IDIQ. Palantir-Partnership bringt AI-Layer für Mission-Planning. Revenue-Guidance 2026: $375M (7x vs 2025). Q1 2026 Revenue $38-40M (+820% YoY). Multi-Domain-System-of-Systems-Architecture: Autonomous Drones (Optimus, FAA-zertifiziert), Counter-UAS (Iron Drone Raider), Ground Robots (Apeiro), Cyber-over-RF (Sentrycs). System-of-Systems-Ansatz trifft genau DoD 2026-Budget-Prioritäten (Trump $1,5T Defense + Golden Dome).</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>2026 Revenue-Guide $375M (7x 2025 $50,7M) — &quot;fast nie gesehenes Growth-Momentum&quot;</li><li>Mistral-Akquisition: $1B+ IDIQ-Pipeline, &quot;Buy American&quot; aligned</li><li>Palantir-Partnership liefert AI-Mission-Planning</li><li>Border-Protection-Program (prime contractor, tausende Drohnen multi-year)</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Price-to-Sales ~95, extreme Growth-Premium eingepreist</li><li>Operating Losses weiterhin deep negative</li><li>Mistral-Integration-Risk (Culture + Execution)</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Mistral-Akquisition Closing Q2 2026</li><li>Q1 2026 Earnings (wahrscheinlich Mai 2026)</li><li>Border-Protection Initial-Purchase-Order-Materialisierung</li></ul></div>
+    </div>
+</div></div>
+</section><section class="theme-section">
+    <div class="theme-header">
+        <div class="theme-name">Biotech Speculative</div>
+        <div class="theme-stats">
+            <span class="theme-count">1 Positionen</span>
+            <span class="theme-value">€7,074</span>
+            <span class="pnl-negative">-17.0%</span>
+        </div>
+    </div>
+    <div class="pf-cards"><div class="pf-card">
+    <div class="pf-card-head">
+        <div class="pf-card-title">
+            <div class="pf-ticker">TENX</div>
+            <div class="pf-name">Tenax Therapeutics</div>
+        </div>
+        <div class="pf-card-meta">
+            <span class="conv-badge" style="background: #d97706;">Conviction 6/10</span>
+            <span class="pf-portpct">0.7% Depot</span>
+        </div>
+    </div>
+    <div class="pf-values">
+        <div><span class="pf-val-label">Einstand</span> €8,526</div>
+        <div><span class="pf-val-label">YAML-Wert</span> €7,074</div>
+        <div class="pnl-negative"><strong>-17.0%</strong></div>
+    </div>
+    <div class="pf-live-row">
+    <div class="pf-live-price">
+        <span class="pf-val-label">Live</span>
+        <strong>13.920 USD</strong>
+    </div>
+    <div class="pf-live-change pnl-positive">
+        <strong>+0.51%</strong> heute
+    </div>
+    <div class="pf-live-value">
+        <span class="pf-val-label">Wert</span>
+        <strong>€7,110</strong>
+    </div>
+</div>
+    <div class="pf-these">Deliberate speculative Biotech-Satellitenposition, 2,5–3,0% capped. Phase 3 LEVEL trial readout Q3 2026 als primärer binärer Katalysator. Add-Trigger unter $13. Green-lit in Equity, nicht Options.</div>
+    <div class="pf-cols">
+        <div class="pf-section pf-bull"><div class="pf-section-title">✅ Bull Case</div><ul><li>Phase 3 LEVEL trial Q3 2026 readout</li><li>PAH (Pulmonary Arterial Hypertension) Indikation mit klarer FDA-Approval-Path</li><li>Add-Trigger unter $13 pre-defined</li><li>Asymmetrisches Payoff-Profil (Biotech-Binary)</li></ul></div>
+        <div class="pf-section pf-bear"><div class="pf-section-title">⚠️ Bear Case / Risiken</div><ul><li>Phase 3 Primary Endpoint miss möglich</li><li>Cash-Runway-Druck vor Readout</li><li>Discontinuation Rate historisch Problem</li></ul></div>
+        <div class="pf-section pf-cat"><div class="pf-section-title">🎯 Catalysts</div><ul><li>Q3 2026 Phase 3 LEVEL trial readout (BINÄR)</li><li>Clinical Trial Registry Updates</li><li>Cash-Runway-Updates</li></ul></div>
+    </div>
+</div></div>
+</section>
+    </div>
+    <footer>X Intelligence Feed · Powered by Claude · Thursday, 23. April 2026 · 07:38</footer>
+</div>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(target + '-tab').classList.add('active');
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    });
+});
+</script>
+</body>
+</html>
