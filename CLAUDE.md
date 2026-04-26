@@ -132,12 +132,21 @@ Watchlist nie gekauft: ENR, ETN, Hitachi, HPS.A.TO
 
 # 5. ANALYSTEN-REGISTRY
 
+## Aktiv gescannte Accounts (alle 5 müssen im Scanner konfiguriert sein)
+
 | Handle | Account | Fokus | Gewicht |
 |--------|---------|-------|---------|
 | Serenity | @aleabitoreddit | Upstream Photonics BOM/Chokepoint | 0.55 |
 | Yiannis | @yianisz | Bottleneck-Positionierung, Moats | 0.45 |
-| Sikand | @michaelsikand | AAOI (LPO) + Soitec (CPO) | Qualitäts-Modifier |
 | Ren | @Ren_aramb | Asian/EU hidden gems, contrarian | Qualitäts-Modifier |
+| Moody | @MoodyWriter13 | Deep-tech EU hidden gems, State-Aid-Radar | Qualitäts-Modifier |
+| Citrini | @citrini | Macro-Trades, Sektor-Rotation | Qualitäts-Modifier |
+
+## Conviction-Overlay (kein eigenständiger Scan)
+
+| Handle | Account | Rolle |
+|--------|---------|-------|
+| Sikand | @michaelsikand | AAOI (LPO) + Soitec (CPO) — Qualitäts-Modifier bei Overlap |
 
 Ralf Reichert = External-Research-Forwarder (Stratechery etc.)
 
